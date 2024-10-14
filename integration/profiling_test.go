@@ -235,7 +235,7 @@ var _ = Describe("Profiling Specs", func() {
 
 				memProfile := ParseProfile(pathToBinary("slow_memory_hog"), pathToProfile("slow_memory_hog", "mem.out"))
 				// The MemProfile for the slow_memory_hog test should list the slow_memory_hog.SomethingExpensive functions as one of the most memory-consuming functions
-				// Assrting on the amount of memory consumed should be stable across tests as the function always builds a large array of this size
+				// Asserting on the amount of memory consumed should be stable across tests as the function always builds a large array of this size
 				Ω(memProfile.FindCaller("slow_memory_hog.SomethingExpensive").CumStat).Should(BeNumerically(">=", 200))
 
 				blockProfile := ParseProfile(pathToBinary("block_contest"), pathToProfile("block_contest", "block.out"))
