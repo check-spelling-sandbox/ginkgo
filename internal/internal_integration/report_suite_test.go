@@ -242,7 +242,7 @@ var _ = Describe("Sending reports to ReportBeforeSuite and ReportAfterSuite node
 				Ω(success).Should(BeFalse())
 			})
 
-			It("keeps running subseuqent reporting functions", func() {
+			It("keeps running subsequent reporting functions", func() {
 				Ω(rt).Should(HaveTracked(
 					"report-before-suite-A", "report-before-suite-B",
 					"before-suite",
