@@ -348,7 +348,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 					Ω(success).Should(Equal(false))
 				}, NodeTimeout(time.Second))
 
-				It("waits for a GracePeriod then interrupts, then waits for a grace period again, then leaks and lets the user know a leak occured", func() {
+				It("waits for a GracePeriod then interrupts, then waits for a grace period again, then leaks and lets the user know a leak occurred", func() {
 					Ω(rt).Should(HaveTracked("bef-outer", "bef-inner", "A", "aft-inner", "aft-outer"))
 					Ω(reporter.Did.Find("A")).Should(HaveBeenInterrupted(interrupt_handler.InterruptCauseSignal))
 					Ω(reporter.Did.Find("B")).Should(HaveBeenSkipped())
@@ -585,7 +585,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			})
 		})
 
-		Context("when a timeout has already occured", func() {
+		Context("when a timeout has already occurred", func() {
 			BeforeEach(func() {
 				success, _ := RunFixture(CurrentSpecReport().LeafNodeText, func() {
 					It("A", func(c SpecContext) {
@@ -605,7 +605,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			})
 		})
 
-		Context("when a failure has already occured", func() {
+		Context("when a failure has already occurred", func() {
 			BeforeEach(func() {
 				success, _ := RunFixture(CurrentSpecReport().LeafNodeText, func() {
 					It("A", rt.T("A", func() {

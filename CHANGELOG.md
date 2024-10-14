@@ -542,9 +542,9 @@ Ginkgo now supports per-node and per-spec timeouts on interruptible nodes.  Chec
 It("is interruptible", func(ctx SpecContext) { // or context.Context instead of SpecContext, both are valid.
     // do things until `ctx.Done()` is closed, for example:
     req, err := http.NewRequestWithContext(ctx, "POST", "/build-widgets", nil)
-    Expect(err).NotTo(HaveOccured())
+    Expect(err).NotTo(HaveOccurred())
     _, err := http.DefaultClient.Do(req)
-    Expect(err).NotTo(HaveOccured())
+    Expect(err).NotTo(HaveOccurred())
 
     Eventually(client.WidgetCount).WithContext(ctx).Should(Equal(17))
 }, NodeTimeout(time.Second*20), GracePeriod(5*time.Second))
