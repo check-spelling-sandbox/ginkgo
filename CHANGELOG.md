@@ -574,7 +574,7 @@ and have Ginkgo ensure that the node completes before the timeout elapses.  If i
 
 Ginkgo can now generate Progress Reports to point users at the current running line of code (including a preview of the actual source code) and a best guess at the most relevant subroutines.
 
-These Progress Reports allow users to debug stuck or slow tests without exiting the Ginkgo process.  A Progress Report can be generated at any time by sending Ginkgo a `SIGINFO` (`^T` on MacOS/BSD) or `SIGUSR1`.
+These Progress Reports allow users to debug stuck or slow tests without exiting the Ginkgo process.  A Progress Report can be generated at any time by sending Ginkgo a `SIGINFO` (`^T` on macOS/BSD) or `SIGUSR1`.
 
 In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overriden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
 

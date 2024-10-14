@@ -524,7 +524,7 @@ Users should update any scripts they have that invoke the `ginkgo` cli from came
 `-stream` was originally introduce in Ginkgo 1.x to force parallel test processes to emit output simultaneously in order to help debug hanging test issues.  With improvements to Ginkgo's interrupt handling and parallel test reporting this behavior is no longer necessary and has been removed.
 
 ### Removed: -notify
-`-notify` instructed Ginkgo to emit desktop notifications on linux and MacOS.  This feature was rarely used and has been removed.
+`-notify` instructed Ginkgo to emit desktop notifications on linux and macOS.  This feature was rarely used and has been removed.
 
 ### Removed: -noisyPendings and -noisySkippings
 Both these flags tweaked the reporter's behavior for pending and skipped tests but never worked quite right.  Now the user can specify between four verbosity levels.  `--succinct`, no verbosity setting, `-v`, and `-vv`.  Specifically, when run with `-vv`  skipped tests will emit their titles and code locations - otherwise skipped tests are silent.
