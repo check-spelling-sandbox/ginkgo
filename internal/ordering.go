@@ -133,7 +133,7 @@ func OrderSpecs(specs Specs, suiteConfig types.SuiteConfig) (GroupedSpecIndices,
 
 		//and if it's the first one in
 		if len(shufflableGroupingIDToGroupIDs[shufflableGroupingNode.ID]) == 1 {
-			// record the shuffleable group ID
+			// record the shufflable group ID
 			shufflableGroupingIDs = append(shufflableGroupingIDs, shufflableGroupingNode.ID)
 		}
 	}
