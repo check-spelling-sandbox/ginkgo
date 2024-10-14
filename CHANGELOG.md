@@ -578,7 +578,7 @@ These Progress Reports allow users to debug stuck or slow tests without exiting 
 
 In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overridden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
 
-Progress Reports are emitted to stdout, and also stored in the machine-redable report formats that Ginkgo supports.
+Progress Reports are emitted to stdout, and also stored in the machine-readable report formats that Ginkgo supports.
 
 Ginkgo also uses this progress reporting infrastructure under the hood when handling timeouts and interrupts.  This yields much more focused, useful, and informative stack traces than previously.
 
