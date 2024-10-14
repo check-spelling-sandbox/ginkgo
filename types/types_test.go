@@ -441,7 +441,7 @@ var _ = Describe("Types", func() {
 					TimelineLocation: types.TimelineLocation{Order: 120},
 					AdditionalFailure: &types.AdditionalFailure{
 						Failure: types.Failure{
-							Message:          "additional-embeded-failure",
+							Message:          "additional-embedded-failure",
 							TimelineLocation: types.TimelineLocation{Order: 125},
 						},
 						State: types.SpecStateFailed,
