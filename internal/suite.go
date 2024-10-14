@@ -740,7 +740,7 @@ func (suite *Suite) runReportSuiteNodesIfNeedBe(nodeType types.NodeType) {
 		suite.processCurrentSpecReport()
 	}
 
-	// if we're running ReportBeforeSuite and we're running in parallel - we shuld tell the other procs that we're done
+	// if we're running ReportBeforeSuite and we're running in parallel - we should tell the other procs that we're done
 	if nodeType.Is(types.NodeTypeReportBeforeSuite) && suite.isRunningInParallel() && len(nodes) > 0 {
 		if suite.report.SuiteSucceeded {
 			suite.client.PostReportBeforeSuiteCompleted(types.SpecStatePassed)
