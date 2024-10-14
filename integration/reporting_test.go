@@ -176,7 +176,7 @@ var _ = Describe("Reporting", func() {
 			Ω(specReports.FindByLeafNodeType(types.NodeTypeBeforeSuite)).Should(HavePassed())
 			Ω(specReports.FindByLeafNodeType(types.NodeTypeCleanupAfterSuite)).Should(HavePassed())
 
-			//check that progress reporst are correctly embedded
+			//check that progress reports are correctly embedded
 			Ω(specReports.Find("passes").ProgressReports).Should(BeEmpty())
 			Ω(specReports.Find("has a progress report").ProgressReports).ShouldNot(BeEmpty())
 			var highlightedFunction types.FunctionCall
