@@ -818,7 +818,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			Ω(success).Should(Equal(false))
 		}, NodeTimeout(time.Second*5))
 
-		It("timesout the node in question and proceeds with other nodes without waiting; subsequent nodes are subject to the timeout if present, otherwise the grace period", func() {
+		It("times out the node in question and proceeds with other nodes without waiting; subsequent nodes are subject to the timeout if present, otherwise the grace period", func() {
 			Ω(rt).Should(HaveTracked("bef", "A", "aft-1", "aft-2", "aft-3", "aft-4", "aft-5"))
 
 			dt := 50 * time.Millisecond
