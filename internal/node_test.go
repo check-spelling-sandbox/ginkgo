@@ -612,7 +612,7 @@ var _ = Describe("Constructing nodes", func() {
 			ExpectAllWell(errors)
 		})
 
-		It("doesn't allow mulitple functions for containers", func() {
+		It("doesn't allow multiple functions for containers", func() {
 			node, errors := internal.NewNode(dt, ntCon, "text", cl, func() {}, func() {})
 			Ω(node.IsZero()).Should(BeTrue())
 			Ω(errors).Should(ConsistOf(types.GinkgoErrors.MultipleBodyFunctions(cl, ntCon)))
