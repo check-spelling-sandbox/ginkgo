@@ -176,7 +176,7 @@ const (
 	VeryVerbose
 	FullTrace
 	ShowNodeEvents
-	GithubOutput
+	GitHubOutput
 	SilenceSkips
 	ForceNewlines
 
@@ -207,7 +207,7 @@ func (cf ConfigFlag) String() string {
 	if cf.Has(Parallel) {
 		out = append(out, "parallel")
 	}
-	if cf.Has(GithubOutput) {
+	if cf.Has(GitHubOutput) {
 		out = append(out, "github-output")
 	}
 	if cf.Has(SilenceSkips) {
@@ -238,7 +238,7 @@ func C(flags ...ConfigFlag) types.ReporterConfig {
 		VeryVerbose:    f.Has(VeryVerbose),
 		FullTrace:      f.Has(FullTrace),
 		ShowNodeEvents: f.Has(ShowNodeEvents),
-		GithubOutput:   f.Has(GithubOutput),
+		GitHubOutput:   f.Has(GitHubOutput),
 		SilenceSkips:   f.Has(SilenceSkips),
 		ForceNewlines:  f.Has(ForceNewlines),
 	}
@@ -791,7 +791,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Captured StdOut/StdErr Output{{/}}",
 				DELIMITER,
 				""),
-			Case(Parallel|GithubOutput,
+			Case(Parallel|GitHubOutput,
 				DELIMITER,
 				spr("{{green}}%s [1.000 seconds]{{/}}", DENOTER),
 				"{{green}}{{bold}}A{{/}}",

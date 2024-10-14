@@ -90,7 +90,7 @@ type ReporterConfig struct {
 	VeryVerbose    bool
 	FullTrace      bool
 	ShowNodeEvents bool
-	GithubOutput   bool
+	GitHubOutput   bool
 	SilenceSkips   bool
 	ForceNewlines  bool
 
@@ -339,8 +339,8 @@ var ReporterConfigFlags = GinkgoFlags{
 		Usage: "If set, default reporter prints out the full stack trace when a failure occurs"},
 	{KeyPath: "R.ShowNodeEvents", Name: "show-node-events", SectionKey: "output",
 		Usage: "If set, default reporter prints node > Enter and < Exit events when specs fail"},
-	{KeyPath: "R.GithubOutput", Name: "github-output", SectionKey: "output",
-		Usage: "If set, default reporter prints easier to manage output in Github Actions."},
+	{KeyPath: "R.GitHubOutput", Name: "github-output", SectionKey: "output",
+		Usage: "If set, default reporter prints easier to manage output in GitHub Actions."},
 	{KeyPath: "R.SilenceSkips", Name: "silence-skips", SectionKey: "output",
 		Usage: "If set, default reporter will not print out skipped tests."},
 	{KeyPath: "R.ForceNewlines", Name: "force-newlines", SectionKey: "output",

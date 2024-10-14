@@ -184,13 +184,13 @@ func (r *DefaultReporter) WillRun(report types.SpecReport) {
 
 func (r *DefaultReporter) wrapTextBlock(sectionName string, fn func()) {
 	r.emitBlock("\n")
-	if r.conf.GithubOutput {
+	if r.conf.GitHubOutput {
 		r.emitBlock(r.fi(1, "::group::%s", sectionName))
 	} else {
 		r.emitBlock(r.fi(1, "{{gray}}%s >>{{/}}", sectionName))
 	}
 	fn()
-	if r.conf.GithubOutput {
+	if r.conf.GitHubOutput {
 		r.emitBlock(r.fi(1, "::endgroup::"))
 	} else {
 		r.emitBlock(r.fi(1, "{{gray}}<< %s{{/}}", sectionName))
@@ -426,7 +426,7 @@ func (r *DefaultReporter) emitShortFailure(indent uint, state types.SpecState, f
 func (r *DefaultReporter) emitFailure(indent uint, state types.SpecState, failure types.Failure, includeAdditionalFailure bool) {
 	highlightColor := r.highlightColorForState(state)
 	r.emitBlock(r.fi(indent, highlightColor+"[%s] %s{{/}}", r.humanReadableState(state), failure.Message))
-	if r.conf.GithubOutput {
+	if r.conf.GitHubOutput {
 		level := "error"
 		if state.Is(types.SpecStateSkipped) {
 			level = "notice"

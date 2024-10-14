@@ -3773,7 +3773,7 @@ Here's why:
 - `--timeout` allows you to specify a timeout for the `ginkgo` run.  The default duration is one hour, which may or may not be enough!
 - `--poll-progress-after` and `--poll-progress-interval` will allow you to learn where long-running specs are getting stuck.  Choose a values for `X` and `Y` that are appropriate to your suite.  A long-running integration suite, for example, might set `X` to `120s` and `Y` to `30s` - whereas a quicker set of unit tests might not need this setting.  Note that if you precompile suites and run them from a different directory relative to your source code, you may also need to set `--source-root` to enable Ginkgo to emit source code lines when generating progress reports.
 
-If running on Github actions: `--github-output` will make the output more readable in the Github actions console.
+If running on GitHub actions: `--github-output` will make the output more readable in the GitHub actions console.
 
 If your CI system will only flush if a newline character is seen you may want to set `--force-newlines` to ensure that the output is flushed correctly.
 
