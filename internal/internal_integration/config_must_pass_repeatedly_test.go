@@ -12,7 +12,7 @@ var _ = Describe("when config.MustPassRepeatedly is greater than 1", func() {
 	var success bool
 	JustBeforeEach(func() {
 		var counterB int
-		success, _ = RunFixture("flakey success", func() {
+		success, _ = RunFixture("flaky success", func() {
 			It("A", func() {})
 			It("B", func() {
 				counterB += 1

@@ -764,7 +764,7 @@ var _ = DescribeTable("Ordered Containers",
 		"A", HavePassed(), "B", HavePassed(), "C", HaveFailed("fail"),
 		"D", "E", HaveBeenSkippedWithMessage(SKIP_DUE_TO_EARLIER_FAILURE),
 	),
-	Entry("when flakey, and an outer BeforeAll flakes", true, func() {
+	Entry("when flaky, and an outer BeforeAll flakes", true, func() {
 		i := 0
 		Context("container", Ordered, FlakeAttempts(4), func() {
 			BeforeAll(rt.T("BA-O", func() {
@@ -792,7 +792,7 @@ var _ = DescribeTable("Ordered Containers",
 		"A", HavePassed(NumAttempts(3)),
 		"B", "C", "D", "E", HavePassed(),
 	),
-	Entry("when flakey, and an inner BeforeAll flakes", true, func() {
+	Entry("when flaky, and an inner BeforeAll flakes", true, func() {
 		i := 0
 		Context("container", Ordered, FlakeAttempts(4), func() {
 			BeforeAll(rt.T("BA-O", DC("DC-O")))
@@ -821,7 +821,7 @@ var _ = DescribeTable("Ordered Containers",
 		"A", "B", "D", "E", HavePassed(),
 		"C", HavePassed(NumAttempts(3)),
 	),
-	Entry("when specs are flakey", true, func() {
+	Entry("when specs are flaky", true, func() {
 		Context("container", Ordered, FlakeAttempts(4), func() {
 			BeforeAll(rt.T("BA-O", DC("DC-O")))
 			It("A", rt.T("A", FlakeyFailer(2)))
@@ -844,7 +844,7 @@ var _ = DescribeTable("Ordered Containers",
 	},
 		"A", "B", "C", "D", "E", HavePassed(NumAttempts(3)),
 	),
-	Entry("when AfterAlls are flakey", true, func() {
+	Entry("when AfterAlls are flaky", true, func() {
 		Context("container", Ordered, FlakeAttempts(4), func() {
 			BeforeAll(rt.T("BA-O", DC("DC-O")))
 			It("A", rt.T("A"))
@@ -867,7 +867,7 @@ var _ = DescribeTable("Ordered Containers",
 	),
 	//this behavior is a bit weird, but it's such an edge case that we're going to leave it
 	//unless an issue gets opened
-	Entry("when DeferCleanups are flakey", true, func() {
+	Entry("when DeferCleanups are flaky", true, func() {
 		Context("container", Ordered, FlakeAttempts(4), func() {
 			BeforeAll(rt.T("BA-O", DC("DC-O", FlakeyFailer(2))))
 			It("A", rt.T("A"))
@@ -1157,7 +1157,7 @@ var _ = DescribeTable("Ordered Containers",
 		"B", "C", HaveBeenSkippedWithMessage(SKIP_DUE_TO_FAILURE_IN_BEFORE_ALL),
 	),
 
-	Entry("ContinueOnFailure - when a BeforeAllFails and flakey attempts are allowed", false, func() {
+	Entry("ContinueOnFailure - when a BeforeAllFails and flaky attempts are allowed", false, func() {
 		BeforeEach(rt.T("BE", DC("DC-BE")), OncePerOrdered)
 		AfterEach(rt.T("AE", DC("DC-AE")), OncePerOrdered)
 		Context("container", Ordered, FlakeAttempts(2), ContinueOnFailure, func() {
@@ -1193,7 +1193,7 @@ var _ = DescribeTable("Ordered Containers",
 		"A", "B", "C", HavePassed(),
 	),
 
-	Entry("ContinueOnFailure - when a BeforeAllFails and flakey attempts are allowed", false, func() {
+	Entry("ContinueOnFailure - when a BeforeAllFails and flaky attempts are allowed", false, func() {
 		BeforeEach(rt.T("BE", func() {
 			DeferCleanup(rt.T("DC-BE"))
 			F("fail")

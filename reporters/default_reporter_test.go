@@ -640,7 +640,7 @@ var _ = Describe("DefaultReporter", func() {
 				DELIMITER,
 				""),
 		),
-		Entry("a passing test that was flakey",
+		Entry("a passing test that was flaky",
 			S(types.NodeTypeIt, "A", cl0, 3, FlakeAttempts(4),
 				AF(types.SpecStateFailed, "failed", types.NodeTypeIt, cl1, types.FailureNodeIsLeafNode, FailureNodeLocation(cl0)),
 				SE(types.SpecEventSpecRetry, 1),
@@ -1891,7 +1891,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), S(types.SpecStatePassed, 4, MustPassRepeatedly(5)), //repeated
 					S(types.SpecStatePending), S(types.SpecStatePending),
 					S(types.SpecStateSkipped), S(types.SpecStateSkipped), S(types.SpecStateSkipped),
@@ -1912,7 +1912,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), S(types.SpecStatePassed, 4, MustPassRepeatedly(5)), //repeated
 					S(types.SpecStatePending), S(types.SpecStatePending),
 					S(types.SpecStateSkipped), S(types.SpecStateSkipped), S(types.SpecStateSkipped),
@@ -1941,7 +1941,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), //repeated, and passed
 					S(types.SpecStateFailed, 3, MustPassRepeatedly(5), "repeater", F("failure", types.FailureNodeIsLeafNode, FailureNodeLocation(cl2), types.NodeTypeIt, cl3)),               //repeated, but failed
 					S(types.SpecStateFailed, 4, MustPassRepeatedly(5), "another-repeater", F("failure-again", types.FailureNodeIsLeafNode, FailureNodeLocation(cl2), types.NodeTypeIt, cl3)), //repeated, but failed

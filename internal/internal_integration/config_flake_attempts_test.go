@@ -14,7 +14,7 @@ var _ = Describe("when config.FlakeAttempts is greater than 1", func() {
 	JustBeforeEach(func() {
 		var counterA, counterC int
 
-		success, _ = RunFixture("flakey success", func() {
+		success, _ = RunFixture("flaky success", func() {
 			It("A", rt.T("A", func() {
 				counterA += 1
 				if counterA < 2 {
