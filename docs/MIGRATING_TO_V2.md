@@ -550,7 +550,7 @@ The `ginkgo nodot` subcommand in V1, along with the `--nodot` flags for `ginkgo 
 As a result of this change custom bootstrap and generate templates may need to be updated:
 
 1. `ginkgo generate` templates should no longer reference `{{.IncludeImports}}`.  Instead they should `import {{.GinkgoImport}}` and `import {{.GomegaImport}}`.
-2. Both `ginkgo generate` and `ginkgo boostrap` templates can use `{{.GinkgoPackage}}` and `{{.GomegaPackage}}` to correctly reference any names exported by Ginkgo or Gomega.  For example:
+2. Both `ginkgo generate` and `ginkgo bootstrap` templates can use `{{.GinkgoPackage}}` and `{{.GomegaPackage}}` to correctly reference any names exported by Ginkgo or Gomega.  For example:
 
 	```go
 
