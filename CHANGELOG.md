@@ -162,7 +162,7 @@ Prior to this release table testing only supported generating individual `It`s f
 ## 2.13.1
 
 ### Fixes
-- # 1296 fix(precompiled test guite): exec bit check omitted on Windows (#1301) [26eea01]
+- # 1296 fix(precompiled test suite): exec bit check omitted on Windows (#1301) [26eea01]
 
 ### Maintenance
 - Bump github.com/go-logr/logr from 1.2.4 to 1.3.0 (#1291) [7161a9d]
