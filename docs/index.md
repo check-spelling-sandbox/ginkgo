@@ -4692,7 +4692,7 @@ SynchronizedBeforeSuite(func() []byte {
 
 Now only process #1 will compile the publisher.  All other processes will wait until it's done.  Once complete it will pass the path to the compiled artifact to all other processes.  Note that the `DeferCleanup` in the `SynchronizedBeforeSuite` will have the same runtime semantics as a `SynchronizedAfterSuite` so `gexec` will not cleanup after itself until _all_ processes have finished running.
 
-Now any spec running on any process can simply launch it's own instance of the `publisher` process via `gexec` and make assertions on its output with `gbytes`.  The only thing to be aware of is potential interactions between the multiple publisher processes if they happen to access some sort of shared singleton resources...  Keep reading!
+Now any spec running on any process can simply launch its own instance of the `publisher` process via `gexec` and make assertions on its output with `gbytes`.  The only thing to be aware of is potential interactions between the multiple publisher processes if they happen to access some sort of shared singleton resources...  Keep reading!
 
 #### Managing External Resources in Parallel Suites: Files
 

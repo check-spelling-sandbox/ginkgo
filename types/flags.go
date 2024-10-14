@@ -100,7 +100,7 @@ type GinkgoFlagSet struct {
 	flagSet *flag.FlagSet
 }
 
-// Call NewGinkgoFlagSet to create GinkgoFlagSet that creates and binds to it's own *flag.FlagSet
+// Call NewGinkgoFlagSet to create GinkgoFlagSet that creates and binds to its own *flag.FlagSet
 func NewGinkgoFlagSet(flags GinkgoFlags, bindings interface{}, sections GinkgoFlagSections) (GinkgoFlagSet, error) {
 	return bindFlagSet(GinkgoFlagSet{
 		flags:    flags,
