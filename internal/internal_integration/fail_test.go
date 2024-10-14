@@ -117,7 +117,7 @@ var _ = Describe("handling test failures", func() {
 		})
 	})
 
-	Describe("individual test falures", func() {
+	Describe("individual test failures", func() {
 		Describe("when an It fails", func() {
 			BeforeEach(func() {
 				success, _ := RunFixture("failed it", func() {
