@@ -939,7 +939,7 @@ var _ = Describe("Node", func() {
 					Ω(capturedCL).Should(BeZero())
 				})
 			})
-			Context("when passed a function that returns somethign that isn't an error", func() {
+			Context("when passed a function that returns something that isn't an error", func() {
 				It("creates a body that runs the function and never calls the fail handler", func() {
 					didRun := false
 					node, errs := internal.NewCleanupNode(dt, failFunc, cl, func() (string, int) {
