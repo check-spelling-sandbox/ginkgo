@@ -31,7 +31,7 @@ var _ = Describe("Flags", func() {
 		})
 
 		Describe("WithPrefix", func() {
-			It("attaches the passed in prefi to the Name, DeprecatedName and ExportAs fields", func() {
+			It("attaches the passed in prefix to the Name, DeprecatedName and ExportAs fields", func() {
 				flags := types.GinkgoFlags{
 					{Name: "A"},
 					{DeprecatedName: "B"},
