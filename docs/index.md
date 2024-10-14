@@ -4475,7 +4475,7 @@ Describe("Change book font-size", func() {
     }()
 
     // now we wait for the `done` channel to close.  Note that we neither pass in a context nor set an explicit timeout
-    // in this case `Eventually` `will use Gomega's default global timeout (1 second, unless overriden by the user)
+    // in this case `Eventually` `will use Gomega's default global timeout (1 second, unless overridden by the user)
     Eventually(done).Should(BeClosed())
   })
 })

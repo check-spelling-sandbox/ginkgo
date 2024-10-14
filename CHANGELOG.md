@@ -212,7 +212,7 @@ Going forward Ginkgo will AND all programmatic and CLI filters.  Moreover, the p
 This change is technically a change in Ginkgo's external contract and may require some users to make changes to successfully adopt. Specifically: it's possible some users were intentionally using CLI filters to override programmatic focus.  If this is you please open an issue so we can explore solutions to the underlying problem you are trying to solve.
 
 ### Fixes
-- Programmatic focus is no longer overwrriten by CLI filters [d6bba86]
+- Programmatic focus is no longer overridden by CLI filters [d6bba86]
 
 ### Maintenance
 - Bump github.com/onsi/gomega from 1.27.7 to 1.27.8 (#1218) [4a70a38]
@@ -576,7 +576,7 @@ Ginkgo can now generate Progress Reports to point users at the current running l
 
 These Progress Reports allow users to debug stuck or slow tests without exiting the Ginkgo process.  A Progress Report can be generated at any time by sending Ginkgo a `SIGINFO` (`^T` on macOS/BSD) or `SIGUSR1`.
 
-In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overriden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
+In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overridden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
 
 Progress Reports are emitted to stdout, and also stored in the machine-redable report formats that Ginkgo supports.
 
