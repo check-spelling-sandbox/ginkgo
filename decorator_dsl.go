@@ -109,7 +109,7 @@ type PollProgressAfter = internal.PollProgressAfter
 /*
 PollProgressInterval allows you to override the configured value for --poll-progress-interval for a particular node.
 
-Once a node has been running for longer than PollProgressAfter Ginkgo will emit node progress periodically at an interval of PollProgresInterval.
+Once a node has been running for longer than PollProgressAfter Ginkgo will emit node progress periodically at an interval of PollProgressInterval.
 */
 type PollProgressInterval = internal.PollProgressInterval
 
