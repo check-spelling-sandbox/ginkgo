@@ -558,7 +558,7 @@ func (fnc FailureNodeContext) MarshalJSON() ([]byte, error) {
 	return fncEnumSupport.MarshJSON(uint(fnc))
 }
 
-// AdditionalFailure capturs any additional failures that occur after the initial failure of a psec
+// AdditionalFailure captures any additional failures that occur after the initial failure of a psec
 // these typically occur in clean up nodes after the spec has failed.
 // We can't simply use Failure as we want to track the SpecState to know what kind of failure this is
 type AdditionalFailure struct {
