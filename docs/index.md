@@ -2591,7 +2591,7 @@ The real power, of labels, however, is around filtering.  You can filter by labe
 - The `,` binary operator equivalent to `||`.
 - The `()` for grouping expressions.
 - Regular expressions can be provided using `/REGEXP/` notation.
-- All other characters will match as label literals.  Label matches are **case insensitive** and trailing and leading whitespace is trimmed.
+- All other characters will match as label literals.  Label matches are **case-insensitive** and trailing and leading whitespace is trimmed.
 
 To build on our example above, here are some label filter queries and their behavior:
 
