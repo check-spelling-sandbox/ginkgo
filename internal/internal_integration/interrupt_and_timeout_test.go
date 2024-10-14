@@ -143,7 +143,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 					Ω(reporter.Did.Find("A").Failure.ProgressReport.OtherGoroutines()).ShouldNot(BeEmpty())
 				})
 
-				It("emits a condensed ProgressReport with a shorter stack trace - note that it does not say anything about a leaked goroutine becuase the grace period is not enforced", func() {
+				It("emits a condensed ProgressReport with a shorter stack trace - note that it does not say anything about a leaked goroutine because the grace period is not enforced", func() {
 					Ω(reporter.ProgressReports).Should(HaveLen(1))
 					pr := reporter.ProgressReports[0]
 					Ω(pr.Message).Should(ContainSubstring("Interrupted by User"))
