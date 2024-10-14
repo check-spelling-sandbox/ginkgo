@@ -9,8 +9,8 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestInterrupthandler(t *testing.T) {
+func TestInterruptHandler(t *testing.T) {
 	interrupt_handler.ABORT_POLLING_INTERVAL = 50 * time.Millisecond
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Interrupthandler Suite")
+	RunSpecs(t, "InterruptHandler Suite")
 }
