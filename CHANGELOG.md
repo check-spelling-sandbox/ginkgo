@@ -893,7 +893,7 @@ You can silence the RC advertisement by setting an `ACK_GINKGO_RC=true` environm
 - Increase the threshold when checking time measurements (#455) [2f714bf, 68f622c]
 - Fix race condition in coverage tests (#423) [a5a8ff7, ab9c08b]
 - Add an extra new line after reporting spec run completion for test2json [874520d]
-- added name name field to junit reported testsuite [ae61c63]
+- added `name` field to junit reported testsuite [ae61c63]
 - Do not set the run time of a spec when the dryRun flag is used (#438) [457e2d9, ba8e856]
 - Process FWhen and FSpecify when unfocusing (#434) [9008c7b, ee65bd, df87dfe]
 - Synchronies the access to the state of specs to avoid race conditions (#430) [7d481bc, ae6829d]
