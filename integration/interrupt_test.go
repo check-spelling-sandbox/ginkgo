@@ -74,7 +74,7 @@ var _ = Describe("Interrupt and Timeout", func() {
 
 			Ω(session).Should(gbytes.Say("Sleeping..."))
 			Ω(session).Should(gbytes.Say("Got your signal, but still taking a nap"), "the timeout has signaled the it to stop, but it's napping...")
-			Ω(session).Should(gbytes.Say("A running node failed to exit in time"), "so we forcibly casue it to exit after the grace-period elapses")
+			Ω(session).Should(gbytes.Say("A running node failed to exit in time"), "so we forcibly cause it to exit after the grace-period elapses")
 			Ω(session).Should(gbytes.Say("Cleaning up once..."))
 			Ω(session).Should(gbytes.Say("Cleaning up twice..."))
 			Ω(session).Should(gbytes.Say("Cleaning up thrice..."), "we manage to get here even though the second after-each gets stuck.  that's thanks to the GracePeriod configuration.")
