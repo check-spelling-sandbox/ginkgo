@@ -144,7 +144,7 @@ func OrderSpecs(specs Specs, suiteConfig types.SuiteConfig) (GroupedSpecIndices,
 	for _, j := range permutation {
 		//let's get the execution group IDs for this shufflable group:
 		executionGroupIDsForJ := shufflableGroupingIDToGroupIDs[shufflableGroupingIDs[j]]
-		// and we'll add their associated specindices to the orderedGroups slice:
+		// and we'll add their associated spec indices to the orderedGroups slice:
 		for _, executionGroupID := range executionGroupIDsForJ {
 			orderedGroups = append(orderedGroups, executionGroups[executionGroupID])
 		}
