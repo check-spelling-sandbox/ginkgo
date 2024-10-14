@@ -40,7 +40,7 @@ var _ = Describe("Failer", func() {
 			}))
 		})
 
-		Context("when told of anotehr failure", func() {
+		Context("when told of another failure", func() {
 			It("discards the second failure, preserving the original", func() {
 				failer.Fail("something else failed", clB)
 
