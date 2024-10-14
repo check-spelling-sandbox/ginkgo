@@ -982,7 +982,7 @@ Bug Fixes:
 - Fixed an issue where a pending test within a focused context (or a focused test within a pending context) would skip all other tests.
 - Be more consistent about handling SIGTERM as well as SIGINT
 - When interrupted while concurrently compiling test suites in the background, Ginkgo now cleans up the compiled artifacts.
-- Fixed a long standing bug where `ginkgo -p` would hang if a process spawned by one of the Ginkgo parallel nodes does not exit. (Hooray!)
+- Fixed a long-standing bug where `ginkgo -p` would hang if a process spawned by one of the Ginkgo parallel nodes does not exit. (Hooray!)
 
 ## 1.1.0 (8/2/2014)
 
