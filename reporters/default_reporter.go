@@ -732,7 +732,7 @@ func (r *DefaultReporter) codeLocationBlock(report types.SpecReport, highlightCo
 		locations[i] = failureLocation
 		highlightIndex = i
 	default:
-		//there is no failure, so we highlight the leaf ndoe
+		//there is no failure, so we highlight the leaf node
 		highlightIndex = len(texts) - 1
 	}
 
