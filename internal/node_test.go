@@ -191,7 +191,7 @@ var _ = Describe("Constructing nodes", func() {
 			})
 		})
 
-		Context("specifying offets", func() {
+		Context("specifying offsets", func() {
 			It("takes the offset and adds it to the base-offset of 2 to compute the code location", func() {
 				cl := types.NewCodeLocation(2)
 				cl2 := types.NewCustomCodeLocation("hi")
