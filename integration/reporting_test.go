@@ -20,7 +20,7 @@ var _ = Describe("Reporting", func() {
 	})
 
 	Describe("in-suite reporting with ReportBeforeEach, ReportAfterEach, ReportBeforeSuite and ReportAfterSuite", func() {
-		It("preview thes uite via ReportBeforeSuite", func() {
+		It("preview the suite via ReportBeforeSuite", func() {
 			session := startGinkgo(fm.PathTo("reporting"), "--no-color", "--seed=17", "--procs=2")
 			Eventually(session).Should(gexec.Exit(1))
 
