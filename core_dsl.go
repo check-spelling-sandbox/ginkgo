@@ -485,7 +485,7 @@ func pushNode(node internal.Node, errors []error) bool {
 Describe nodes are Container nodes that allow you to organize your specs.  A Describe node's closure can contain any number of
 Setup nodes (e.g. BeforeEach, AfterEach, JustBeforeEach), and Subject nodes (i.e. It).
 
-Context and When nodes are aliases for Describe - use whichever gives your suite a better narrative flow.  It is idomatic
+Context and When nodes are aliases for Describe - use whichever gives your suite a better narrative flow.  It is idiomatic
 to Describe the behavior of an object or function and, within that Describe, outline a number of Contexts and Whens.
 
 You can learn more at https://onsi.github.io/ginkgo/#organizing-specs-with-container-nodes
