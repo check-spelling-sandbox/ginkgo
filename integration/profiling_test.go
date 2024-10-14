@@ -241,7 +241,7 @@ var _ = Describe("Profiling Specs", func() {
 				blockProfile := ParseProfile(pathToBinary("block_contest"), pathToProfile("block_contest", "block.out"))
 				// The BlockProfile for the block_contest test should list two channel-reading functions:
 				// block_contest.ReadTheChannel is called 10 times and takes ~5ms per call
-				// block_contest.SlowReadTheChannel is called once and teakes ~500ms per call
+				// block_contest.SlowReadTheChannel is called once and takes ~500ms per call
 				// Asserting that both times are within a range should be stable across tests
 				// Note: these numbers are adjusted slightly to tolerate variance during test runs
 				Ω(blockProfile.FindCaller("block_contest.ReadTheChannel").CumStat).Should(BeNumerically(">=", 45))
