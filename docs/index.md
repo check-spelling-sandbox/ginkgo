@@ -5392,16 +5392,16 @@ which will recurse through the current file tree and run any suites it finds.
 To pass additional arguments or custom flags down to your suite use `--` to separate your arguments from arguments intended for `ginkgo`:
 
 ```bash
-ginkgo -- <PASS-THROUGHS>
+ginkgo -- <PASSTHROUGHS>
 ```
 
 Finally, note that any Ginkgo flags must appear _before_ the list of packages.  Putting it all together:
 
 ```bash
-ginkgo <GINKGO-FLAGS> <PACKAGES> -- <PASS-THROUGHS>
+ginkgo <GINKGO-FLAGS> <PACKAGES> -- <PASSTHROUGHS>
 ```
 
-By default Ginkgo is running the `run` subcommand.  So all these examples can also be written as `ginkgo run <GINKGO-FLAGS> <PACKAGES> -- <PASS-THROUGHS>`.  To get help about Ginkgo's run flags you'll need to run `ginkgo help run`.
+By default Ginkgo is running the `run` subcommand.  So all these examples can also be written as `ginkgo run <GINKGO-FLAGS> <PACKAGES> -- <PASSTHROUGHS>`.  To get help about Ginkgo's run flags you'll need to run `ginkgo help run`.
 
 ### Precompiling Suites
 
