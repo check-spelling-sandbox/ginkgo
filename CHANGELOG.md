@@ -589,7 +589,7 @@ Ginkgo also uses this progress reporting infrastructure under the hood when hand
 
 ### Maintenance
 - Modernize the invocation of Ginkgo in github actions [0ffde58]
-- Update reocmmended CI settings in docs [896bbb9]
+- Update recommended CI settings in docs [896bbb9]
 - Speed up unnecessarily slow integration test [6d3a90e]
 
 ## 2.1.6
