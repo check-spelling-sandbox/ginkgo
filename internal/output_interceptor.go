@@ -198,7 +198,7 @@ func (interceptor *genericOutputInterceptor) PauseIntercepting() {
 			content we've got but leaves the io.Copy running.  This ensures the external process can continue writing without hanging at the cost of leaking a goroutine
 			and file descriptor (those these will be cleaned up when the process exits).
 
-			We tack on a message to notify the user that they've hit this edgecase and encourage them to address it.
+			We tack on a message to notify the user that they've hit this edge case and encourage them to address it.
 		*/
 		close(interceptor.emergencyBailout)
 		content = <-interceptor.interceptedContent + BAILOUT_MESSAGE
