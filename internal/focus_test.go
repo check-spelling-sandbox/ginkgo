@@ -295,7 +295,7 @@ var _ = Describe("Focus", func() {
 				specs = Specs{
 					S(N("dog", CL("file_a", 1), Label("brown"))),                   //include because "file_:1" is in FocusFiles and "dog" is in FocusStrings and has "brown" label
 					S(N("dog", CL("file_a", 1), Label("white"))),                   //skip because does not have "brown" label
-					S(N("dog cat", CL("file_b", 3, "file_b", 15), Label("brown"))), //skip because "file_:15-21" is in FocusFiles but "cat" is in SkipStirngs
+					S(N("dog cat", CL("file_b", 3, "file_b", 15), Label("brown"))), //skip because "file_:15-21" is in FocusFiles but "cat" is in SkipStrings
 					S(N("fish", CL("file_b", 17), Label("brown"))),                 //skip because "_b:17" is in SkipFiles, even though "fish" is in FocusStrings
 					S(N("biscuit", CL("file_b", 20), Pending, Label("brown"))),     //skip because spec is flagged pending
 					S(N("pony", CL("c", 3), Label("brown"))),                       //skip because "c" is not in FocusFiles or FocusStrings
@@ -322,7 +322,7 @@ var _ = Describe("Focus", func() {
 					S(N("dog", CL("file_a", 1), Label("brown"))),                   //skip because "file_:1" is in FocusFiles and "dog" is in FocusStrings and has "brown" label but a different spec has a programmatic focus
 					S(N("dog", CL("file_a", 17), Label("brown"), Focus)),           //include because "file_:15-21" is in FocusFiles and "dog" is in FocusStrings and has "brown" label
 					S(N("dog", CL("file_a", 1), Label("white"), Focus)),            //skip because does not have "brown" label
-					S(N("dog cat", CL("file_b", 3, "file_b", 15), Label("brown"))), //skip because "file_:15-21" is in FocusFiles but "cat" is in SkipStirngs
+					S(N("dog cat", CL("file_b", 3, "file_b", 15), Label("brown"))), //skip because "file_:15-21" is in FocusFiles but "cat" is in SkipStrings
 					S(N("fish", CL("file_b", 17), Label("brown"))),                 //skip because "_b:17" is in SkipFiles, even though "fish" is in FocusStrings
 					S(N("biscuit", CL("file_b", 20), Pending, Label("brown"))),     //skip because spec is flagged pending
 					S(N("pony", CL("c", 3), Label("brown"))),                       //skip because "c" is not in FocusFiles or FocusStrings
