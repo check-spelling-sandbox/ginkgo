@@ -55,7 +55,7 @@ type Suite struct {
 	/*
 		We don't need to lock around all operations.  Just those that *could* happen concurrently.
 
-		Suite, generally, only runs one node at a time - and so the possibiity for races is small.  In fact, the presence of a race usually indicates the user has launched a goroutine that has leaked past the node it was launched in.
+		Suite, generally, only runs one node at a time - and so the possibility for races is small.  In fact, the presence of a race usually indicates the user has launched a goroutine that has leaked past the node it was launched in.
 
 		However, there are some operations that can happen concurrently:
 
