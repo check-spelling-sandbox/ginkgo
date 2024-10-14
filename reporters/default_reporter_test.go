@@ -2660,7 +2660,7 @@ var _ = Describe("DefaultReporter", func() {
 			C(),
 			RE("my report", cl0),
 		),
-		Entry("emits nothing if hte report has VisiblityNever, regardless of verbosity level",
+		Entry("emits nothing if the report has VisiblityNever, regardless of verbosity level",
 			C(Verbose),
 			RE("my report", cl0, types.ReportEntryVisibilityNever),
 		),
