@@ -5614,6 +5614,6 @@ Set the `GINKGO_PRESERVE_CACHE` environment variable to `true` in order to
 skip the `os.Getwd()` call. This may affect the reporter output.
 
 ### The ginkgolinter
-The [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces several patterns of using ginkgo and gomega. It can run as an independent executable or as part of the [golangci-lint](https://golangci-lint.run/) linter. See the ginkgolinter [READMY](https://github.com/nunnatsa/ginkgolinter#readme) for more details.
+The [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces several patterns of using ginkgo and gomega. It can run as an independent executable or as part of the [golangci-lint](https://golangci-lint.run/) linter. See the ginkgolinter [README](https://github.com/nunnatsa/ginkgolinter#readme) for more details.
 
 {% endraw  %}
