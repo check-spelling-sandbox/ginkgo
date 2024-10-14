@@ -133,7 +133,7 @@ Require Go 1.22+
 ### Features
 You can now use `GinkgoTB()` when you need an instance of `testing.TB` to pass to a library.
 
-Prior to this release table testing only supported generating individual `It`s for each test entry.  `DescribeTableSubtree` extends table testing support to entire testing subtrees - under the hood `DescrieTableSubtree` generates a new container for each entry and invokes your function to fill our the container.  See the [docs](https://onsi.github.io/ginkgo/#generating-subtree-tables) to learn more.
+Prior to this release table testing only supported generating individual `It`s for each test entry.  `DescribeTableSubtree` extends table testing support to entire testing subtrees - under the hood `DescribeTableSubtree` generates a new container for each entry and invokes your function to fill our the container.  See the [docs](https://onsi.github.io/ginkgo/#generating-subtree-tables) to learn more.
 
 - Introduce DescribeTableSubtree [65ec56d]
 - add GinkgoTB() to docs [4a2c832]
