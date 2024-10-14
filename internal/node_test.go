@@ -781,7 +781,7 @@ var _ = Describe("Node", func() {
 				Entry("wrong input type", func(_ string) {}),
 			)
 
-			DescribeTable("The various posisble errors for allProc", func(allProc any) {
+			DescribeTable("The various possible errors for allProc", func(allProc any) {
 				node, errors := internal.NewNode(dt, types.NodeTypeSynchronizedBeforeSuite, "", func() {}, allProc, cl)
 				Ω(errors).Should(ConsistOf(types.GinkgoErrors.InvalidBodyTypeForSynchronizedBeforeSuiteAllProcs(reflect.TypeOf(allProc), cl)))
 				Ω(node).Should(BeZero())
