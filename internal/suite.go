@@ -92,7 +92,7 @@ func (suite *Suite) Clone() (*Suite, error) {
 }
 
 func (suite *Suite) BuildTree() error {
-	// During PhaseBuildTopLevel, the top level containers are stored in suite.topLevelCotainers and entered
+	// During PhaseBuildTopLevel, the top level containers are stored in suite.topLevelContainers and entered
 	// We now enter PhaseBuildTree where these top level containers are entered and added to the spec tree
 	suite.phase = PhaseBuildTree
 	for _, topLevelContainer := range suite.topLevelContainers {
