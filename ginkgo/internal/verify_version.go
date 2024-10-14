@@ -10,7 +10,7 @@ import (
 	"github.com/onsi/ginkgo/v2/types"
 )
 
-var versiorRe = regexp.MustCompile(`v(\d+\.\d+\.\d+)`)
+var versionRe = regexp.MustCompile(`v(\d+\.\d+\.\d+)`)
 
 func VerifyCLIAndFrameworkVersion(suites TestSuites) {
 	cliVersion := types.VERSION
@@ -27,7 +27,7 @@ func VerifyCLIAndFrameworkVersion(suites TestSuites) {
 		if len(components) != 2 {
 			continue
 		}
-		matches := versiorRe.FindStringSubmatch(components[1])
+		matches := versionRe.FindStringSubmatch(components[1])
 		if matches == nil || len(matches) != 2 {
 			continue
 		}
