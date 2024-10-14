@@ -39,7 +39,7 @@ Require Go 1.22+
 ## 2.18.0
 
 ### Features
-- Add --slience-skips and --force-newlines [f010b65]
+- Add --silence-skips and --force-newlines [f010b65]
 - fail when no tests were run and --fail-on-empty was set [d80eebe]
 
 ### Fixes
