@@ -30,7 +30,7 @@ func BuildRunCommand() command.Command {
 	return command.Command{
 		Name:          "run",
 		Flags:         flags,
-		Usage:         "ginkgo run <FLAGS> <PACKAGES> -- <PASS-THROUGHS>",
+		Usage:         "ginkgo run <FLAGS> <PACKAGES> -- <PASSTHROUGHS>",
 		ShortDoc:      "Run the tests in the passed in <PACKAGES> (or the package in the current directory if left blank)",
 		Documentation: "Any arguments after -- will be passed to the test.",
 		DocLink:       "running-tests",

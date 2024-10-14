@@ -15,7 +15,7 @@ var _global_node_id_counter = uint(0)
 var _global_id_mutex = &sync.Mutex{}
 
 func UniqueNodeID() uint {
-	// There's a reace in the internal integration tests if we don't make
+	// There's a race in the internal integration tests if we don't make
 	// accessing _global_node_id_counter safe across goroutines.
 	_global_id_mutex.Lock()
 	defer _global_id_mutex.Unlock()

@@ -248,7 +248,7 @@ func (g *group) attemptSpec(isFinalAttempt bool, spec Spec) bool {
 
 			switch g.suite.currentSpecReport.State {
 			case types.SpecStatePassed: //this attempt is passing...
-				return isLastSpecWithPair //...we should run-once if we'this is our last chance
+				return isLastSpecWithPair //...we should run-once if this is our last chance
 			case types.SpecStateSkipped: //the spec was skipped by the user...
 				if isLastSpecWithPair {
 					return true //...we're the last spec, so we should run the AfterNode

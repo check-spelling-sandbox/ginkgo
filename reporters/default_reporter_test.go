@@ -176,7 +176,7 @@ const (
 	VeryVerbose
 	FullTrace
 	ShowNodeEvents
-	GithubOutput
+	GitHubOutput
 	SilenceSkips
 	ForceNewlines
 
@@ -207,7 +207,7 @@ func (cf ConfigFlag) String() string {
 	if cf.Has(Parallel) {
 		out = append(out, "parallel")
 	}
-	if cf.Has(GithubOutput) {
+	if cf.Has(GitHubOutput) {
 		out = append(out, "github-output")
 	}
 	if cf.Has(SilenceSkips) {
@@ -238,7 +238,7 @@ func C(flags ...ConfigFlag) types.ReporterConfig {
 		VeryVerbose:    f.Has(VeryVerbose),
 		FullTrace:      f.Has(FullTrace),
 		ShowNodeEvents: f.Has(ShowNodeEvents),
-		GithubOutput:   f.Has(GithubOutput),
+		GitHubOutput:   f.Has(GitHubOutput),
 		SilenceSkips:   f.Has(SilenceSkips),
 		ForceNewlines:  f.Has(ForceNewlines),
 	}
@@ -640,7 +640,7 @@ var _ = Describe("DefaultReporter", func() {
 				DELIMITER,
 				""),
 		),
-		Entry("a passing test that was flakey",
+		Entry("a passing test that was flaky",
 			S(types.NodeTypeIt, "A", cl0, 3, FlakeAttempts(4),
 				AF(types.SpecStateFailed, "failed", types.NodeTypeIt, cl1, types.FailureNodeIsLeafNode, FailureNodeLocation(cl0)),
 				SE(types.SpecEventSpecRetry, 1),
@@ -791,7 +791,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Captured StdOut/StdErr Output{{/}}",
 				DELIMITER,
 				""),
-			Case(Parallel|GithubOutput,
+			Case(Parallel|GitHubOutput,
 				DELIMITER,
 				spr("{{green}}%s [1.000 seconds]{{/}}", DENOTER),
 				"{{green}}{{bold}}A{{/}}",
@@ -1569,7 +1569,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Timeline{{/}}",
 				DELIMITER,
 				""),
-			Case(Verbose, // don't see the other timeline entries because they are emitted in realthime (which isn't shown here since we don't replay the timeline in the spec)
+			Case(Verbose, // don't see the other timeline entries because they are emitted in realtime (which isn't shown here since we don't replay the timeline in the spec)
 				DELIMITER,
 				"{{/}}A {{gray}}B {{/}}{{bold}}[It] C{{/}}",
 				"{{gray}}cl2.go:80{{/}}",
@@ -1803,7 +1803,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Timeline{{/}}",
 				DELIMITER,
 				""),
-			Case(Verbose, // don't see the other timeline entries because they are emitted in realthime (which isn't shown here since we don't replay the timeline in the spec)
+			Case(Verbose, // don't see the other timeline entries because they are emitted in realtime (which isn't shown here since we don't replay the timeline in the spec)
 				DELIMITER,
 				"{{/}}A {{gray}}B {{/}}{{bold}}[It] C{{/}} {{coral}}[dolphin, gorilla, cow, cat, dog]{{/}}",
 				"{{gray}}cl2.go:80{{/}}",
@@ -1891,7 +1891,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), S(types.SpecStatePassed, 4, MustPassRepeatedly(5)), //repeated
 					S(types.SpecStatePending), S(types.SpecStatePending),
 					S(types.SpecStateSkipped), S(types.SpecStateSkipped), S(types.SpecStateSkipped),
@@ -1912,7 +1912,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), S(types.SpecStatePassed, 4, MustPassRepeatedly(5)), //repeated
 					S(types.SpecStatePending), S(types.SpecStatePending),
 					S(types.SpecStateSkipped), S(types.SpecStateSkipped), S(types.SpecStateSkipped),
@@ -1941,7 +1941,7 @@ var _ = Describe("DefaultReporter", func() {
 				SpecReports: types.SpecReports{
 					S(types.NodeTypeBeforeSuite),
 					S(types.SpecStatePassed), S(types.SpecStatePassed), S(types.SpecStatePassed),
-					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flakey
+					S(types.SpecStatePassed, 3, FlakeAttempts(5)), S(types.SpecStatePassed, 4, FlakeAttempts(5)), //flaky
 					S(types.SpecStatePassed, 3, MustPassRepeatedly(5)), //repeated, and passed
 					S(types.SpecStateFailed, 3, MustPassRepeatedly(5), "repeater", F("failure", types.FailureNodeIsLeafNode, FailureNodeLocation(cl2), types.NodeTypeIt, cl3)),               //repeated, but failed
 					S(types.SpecStateFailed, 4, MustPassRepeatedly(5), "another-repeater", F("failure-again", types.FailureNodeIsLeafNode, FailureNodeLocation(cl2), types.NodeTypeIt, cl3)), //repeated, but failed
@@ -2660,7 +2660,7 @@ var _ = Describe("DefaultReporter", func() {
 			C(),
 			RE("my report", cl0),
 		),
-		Entry("emits nothing if hte report has VisiblityNever, regardless of verbosity level",
+		Entry("emits nothing if the report has VisibilityNever, regardless of verbosity level",
 			C(Verbose),
 			RE("my report", cl0, types.ReportEntryVisibilityNever),
 		),

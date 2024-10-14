@@ -191,7 +191,7 @@ var _ = Describe("Constructing nodes", func() {
 			})
 		})
 
-		Context("specifying offets", func() {
+		Context("specifying offsets", func() {
 			It("takes the offset and adds it to the base-offset of 2 to compute the code location", func() {
 				cl := types.NewCodeLocation(2)
 				cl2 := types.NewCustomCodeLocation("hi")
@@ -612,7 +612,7 @@ var _ = Describe("Constructing nodes", func() {
 			ExpectAllWell(errors)
 		})
 
-		It("doesn't allow mulitple functions for containers", func() {
+		It("doesn't allow multiple functions for containers", func() {
 			node, errors := internal.NewNode(dt, ntCon, "text", cl, func() {}, func() {})
 			Ω(node.IsZero()).Should(BeTrue())
 			Ω(errors).Should(ConsistOf(types.GinkgoErrors.MultipleBodyFunctions(cl, ntCon)))
@@ -781,7 +781,7 @@ var _ = Describe("Node", func() {
 				Entry("wrong input type", func(_ string) {}),
 			)
 
-			DescribeTable("The various posisble errors for allProc", func(allProc any) {
+			DescribeTable("The various possible errors for allProc", func(allProc any) {
 				node, errors := internal.NewNode(dt, types.NodeTypeSynchronizedBeforeSuite, "", func() {}, allProc, cl)
 				Ω(errors).Should(ConsistOf(types.GinkgoErrors.InvalidBodyTypeForSynchronizedBeforeSuiteAllProcs(reflect.TypeOf(allProc), cl)))
 				Ω(node).Should(BeZero())
@@ -939,7 +939,7 @@ var _ = Describe("Node", func() {
 					Ω(capturedCL).Should(BeZero())
 				})
 			})
-			Context("when passed a function that returns somethign that isn't an error", func() {
+			Context("when passed a function that returns something that isn't an error", func() {
 				It("creates a body that runs the function and never calls the fail handler", func() {
 					didRun := false
 					node, errs := internal.NewCleanupNode(dt, failFunc, cl, func() (string, int) {

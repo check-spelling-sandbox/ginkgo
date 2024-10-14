@@ -235,13 +235,13 @@ var _ = Describe("Profiling Specs", func() {
 
 				memProfile := ParseProfile(pathToBinary("slow_memory_hog"), pathToProfile("slow_memory_hog", "mem.out"))
 				// The MemProfile for the slow_memory_hog test should list the slow_memory_hog.SomethingExpensive functions as one of the most memory-consuming functions
-				// Assrting on the amount of memory consumed should be stable across tests as the function always builds a large array of this size
+				// Asserting on the amount of memory consumed should be stable across tests as the function always builds a large array of this size
 				Ω(memProfile.FindCaller("slow_memory_hog.SomethingExpensive").CumStat).Should(BeNumerically(">=", 200))
 
 				blockProfile := ParseProfile(pathToBinary("block_contest"), pathToProfile("block_contest", "block.out"))
 				// The BlockProfile for the block_contest test should list two channel-reading functions:
 				// block_contest.ReadTheChannel is called 10 times and takes ~5ms per call
-				// block_contest.SlowReadTheChannel is called once and teakes ~500ms per call
+				// block_contest.SlowReadTheChannel is called once and takes ~500ms per call
 				// Asserting that both times are within a range should be stable across tests
 				// Note: these numbers are adjusted slightly to tolerate variance during test runs
 				Ω(blockProfile.FindCaller("block_contest.ReadTheChannel").CumStat).Should(BeNumerically(">=", 45))
@@ -311,7 +311,7 @@ var _ = Describe("Profiling Specs", func() {
 				Ω(session).Should(gbytes.Say("no cpu profile was generated because specs are programmatically focused"))
 				Ω(session).Should(gbytes.Say("no mem profile was generated because specs are programmatically focused"))
 				Ω(session).Should(gbytes.Say("no mutex profile was generated because specs are programmatically focused"))
-				Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programatically focused specs"))
+				Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programmatically focused specs"))
 				Ω(fm.PathTo("focused", "coverprofile.out")).ShouldNot(BeAnExistingFile())
 				Ω(fm.PathTo("focused", "block.out")).ShouldNot(BeAnExistingFile())
 				Ω(fm.PathTo("focused", "mem.out")).ShouldNot(BeAnExistingFile())
@@ -329,7 +329,7 @@ var _ = Describe("Profiling Specs", func() {
 				Ω(session).Should(gbytes.Say("no cpu profile was generated because specs are programmatically focused"))
 				Ω(session).Should(gbytes.Say("no mem profile was generated because specs are programmatically focused"))
 				Ω(session).Should(gbytes.Say("no mutex profile was generated because specs are programmatically focused"))
-				Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programatically focused specs"))
+				Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programmatically focused specs"))
 				Ω(fm.PathTo("focused", "coverprofile.out")).ShouldNot(BeAnExistingFile())
 				Ω(fm.PathTo("focused", "block.out")).ShouldNot(BeAnExistingFile())
 				Ω(fm.PathTo("focused", "mem.out")).ShouldNot(BeAnExistingFile())
@@ -393,7 +393,7 @@ var _ = Describe("Profiling Specs", func() {
 					Ω(session).Should(gbytes.Say("no mem profile was generated because specs are programmatically focused"))
 					Ω(session).Should(gbytes.Say("no mutex profile was generated because specs are programmatically focused"))
 
-					Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programatically focused specs"))
+					Ω(session).Should(gbytes.Say("no composite coverage computed: all suites included programmatically focused specs"))
 
 					Ω(fm.ListDir("focused", "output")).Should(ConsistOf(
 						"focused.test", "focused_cpu.out", //this is an inconsistency in go test where the cpu.out file is generated but empty
@@ -423,7 +423,7 @@ var _ = Describe("Profiling Specs", func() {
 					Ω(session).Should(gbytes.Say("no mem profile was generated because specs are programmatically focused"))
 					Ω(session).Should(gbytes.Say("no mutex profile was generated because specs are programmatically focused"))
 
-					Ω(session).Should(gbytes.Say("composite coverage: 80.0% of statements however some suites did not contribute because they included programatically focused specs"))
+					Ω(session).Should(gbytes.Say("composite coverage: 80.0% of statements however some suites did not contribute because they included programmatically focused specs"))
 
 					Ω(fm.ListDir("output")).Should(ConsistOf(
 						"coverprofile.out",

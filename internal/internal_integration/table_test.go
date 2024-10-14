@@ -66,7 +66,7 @@ var _ = Describe("Table driven tests", func() {
 							F("fail")
 						}
 					})
-				}, func(a, b, sum, differenct int) string { return fmt.Sprintf("%d,%d", a, b) },
+				}, func(a, b, sum, difference int) string { return fmt.Sprintf("%d,%d", a, b) },
 					Entry(nil, 1, 1, 2, 0),
 					Entry(nil, 1, 2, 3, -1),
 					Entry(nil, 2, 1, 0, 0),

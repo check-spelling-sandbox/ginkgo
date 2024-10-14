@@ -86,7 +86,7 @@ var _ = Describe("Generating Timelines", func() {
 		))
 	})
 
-	It("generates a correctly sorted timeline for the flakey spec", func() {
+	It("generates a correctly sorted timeline for the flaky spec", func() {
 		timeline := reporter.Did.Find("flakes repeatedly").Timeline()
 		sort.Sort(timeline)
 		Ω(timeline).Should(BeTimelineExactlyMatching(

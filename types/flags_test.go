@@ -31,7 +31,7 @@ var _ = Describe("Flags", func() {
 		})
 
 		Describe("WithPrefix", func() {
-			It("attaches the passed in prefi to the Name, DeprecatedName and ExportAs fields", func() {
+			It("attaches the passed in prefix to the Name, DeprecatedName and ExportAs fields", func() {
 				flags := types.GinkgoFlags{
 					{Name: "A"},
 					{DeprecatedName: "B"},
@@ -476,9 +476,9 @@ var _ = Describe("Flags", func() {
 			Ω(err).Should(MatchError("unsupported type int32"))
 			Ω(args).Should(BeEmpty())
 
-			flags[0] = types.GinkgoFlag{Name: "bad-keypath", KeyPath: "A.StringProoperty"}
+			flags[0] = types.GinkgoFlag{Name: "bad-keypath", KeyPath: "A.StringProperty_"}
 			args, err = types.GenerateFlagArgs(flags, bindings)
-			Ω(err).Should(MatchError("could not load KeyPath: A.StringProoperty"))
+			Ω(err).Should(MatchError("could not load KeyPath: A.StringProperty_"))
 			Ω(args).Should(BeEmpty())
 		})
 	})

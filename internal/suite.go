@@ -20,7 +20,7 @@ const (
 	PhaseRun
 )
 
-var PROGRESS_REPORTER_DEADLING = 5 * time.Second
+var PROGRESS_REPORTER_DEADLINE = 5 * time.Second
 
 type Suite struct {
 	tree               *TreeNode
@@ -55,12 +55,12 @@ type Suite struct {
 	/*
 		We don't need to lock around all operations.  Just those that *could* happen concurrently.
 
-		Suite, generally, only runs one node at a time - and so the possibiity for races is small.  In fact, the presence of a race usually indicates the user has launched a goroutine that has leaked past the node it was launched in.
+		Suite, generally, only runs one node at a time - and so the possibility for races is small.  In fact, the presence of a race usually indicates the user has launched a goroutine that has leaked past the node it was launched in.
 
 		However, there are some operations that can happen concurrently:
 
-		- AddReportEntry and CurrentSpecReport can be accessed at any point by the user - including in goroutines that outlive the node intentionally (see, e.g. #1020).  They both form a self-contained read-write pair and so a lock in them is sufficent.
-		- generateProgressReport can be invoked at any point in time by an interrupt or a progres poll.  Moreover, it requires access to currentSpecReport, currentNode, currentNodeStartTime, and progressStepCursor.  To make it threadsafe we need to lock around generateProgressReport when we read those variables _and_ everywhere those variables are *written*.  In general we don't need to worry about all possible field writes to these variables as what `generateProgressReport` does with these variables is fairly selective (hence the name of the lock).  Specifically, we dont' need to lock around state and failure message changes on `currentSpecReport` - just the setting of the variable itself.
+		- AddReportEntry and CurrentSpecReport can be accessed at any point by the user - including in goroutines that outlive the node intentionally (see, e.g. #1020).  They both form a self-contained read-write pair and so a lock in them is sufficient.
+		- generateProgressReport can be invoked at any point in time by an interrupt or a progress poll.  Moreover, it requires access to currentSpecReport, currentNode, currentNodeStartTime, and progressStepCursor.  To make it threadsafe we need to lock around generateProgressReport when we read those variables _and_ everywhere those variables are *written*.  In general we don't need to worry about all possible field writes to these variables as what `generateProgressReport` does with these variables is fairly selective (hence the name of the lock).  Specifically, we dont' need to lock around state and failure message changes on `currentSpecReport` - just the setting of the variable itself.
 	*/
 	selectiveLock *sync.Mutex
 
@@ -92,7 +92,7 @@ func (suite *Suite) Clone() (*Suite, error) {
 }
 
 func (suite *Suite) BuildTree() error {
-	// During PhaseBuildTopLevel, the top level containers are stored in suite.topLevelCotainers and entered
+	// During PhaseBuildTopLevel, the top level containers are stored in suite.topLevelContainers and entered
 	// We now enter PhaseBuildTree where these top level containers are entered and added to the spec tree
 	suite.phase = PhaseBuildTree
 	for _, topLevelContainer := range suite.topLevelContainers {
@@ -370,7 +370,7 @@ func (suite *Suite) generateProgressReport(fullReport bool) types.ProgressReport
 	suite.selectiveLock.Lock()
 	defer suite.selectiveLock.Unlock()
 
-	deadline, cancel := context.WithTimeout(context.Background(), PROGRESS_REPORTER_DEADLING)
+	deadline, cancel := context.WithTimeout(context.Background(), PROGRESS_REPORTER_DEADLINE)
 	defer cancel()
 	var additionalReports []string
 	if suite.currentSpecContext != nil {
@@ -740,7 +740,7 @@ func (suite *Suite) runReportSuiteNodesIfNeedBe(nodeType types.NodeType) {
 		suite.processCurrentSpecReport()
 	}
 
-	// if we're running ReportBeforeSuite and we're running in parallel - we shuld tell the other procs that we're done
+	// if we're running ReportBeforeSuite and we're running in parallel - we should tell the other procs that we're done
 	if nodeType.Is(types.NodeTypeReportBeforeSuite) && suite.isRunningInParallel() && len(nodes) > 0 {
 		if suite.report.SuiteSucceeded {
 			suite.client.PostReportBeforeSuiteCompleted(types.SpecStatePassed)

@@ -1360,7 +1360,7 @@ The string passed to `By` is attached to the spec and can be displayed by Ginkgo
 `By` doesn't affect the structure of your specs - it's primarily syntactic sugar to help you document long and complex specs.  Ginkgo has additional mechanisms to break specs up into more granular subunits with guaranteed ordering - we'll discuss [Ordered containers](#ordered-containers) in detail later.
 
 ### Mental Model: Spec Timelines
-Several events can occur during the lifecycle of a Ginkgo spec.  You've seen a few of these already: various setup and subject nodes start and end; data is written to the `GinkgoWriter`; `By` annotations are generated; failures occur.  And there are several more that you'll see introduced later in these docs (e.g. [`ReportEntries`](#attaching-data-to-reports) and [Progess Reports](#getting-visibility-into-long-running-specs) are attached to specs; [flaky specs](#repeating-spec-runs-and-managing-flaky-specs) might be retried).
+Several events can occur during the lifecycle of a Ginkgo spec.  You've seen a few of these already: various setup and subject nodes start and end; data is written to the `GinkgoWriter`; `By` annotations are generated; failures occur.  And there are several more that you'll see introduced later in these docs (e.g. [`ReportEntries`](#attaching-data-to-reports) and [Progress Reports](#getting-visibility-into-long-running-specs) are attached to specs; [flaky specs](#repeating-spec-runs-and-managing-flaky-specs) might be retried).
 
 By default, when a spec passes Ginkgo does not emit any of this information.  When a failure occurs, however, Ginkgo emits a **timeline** view of the spec.  This includes all the events and `GinkgoWriter` output associated with a spec in the order they were generated and provides the context needed to debug the spec and understand the nature and context of the failure.
 
@@ -1677,7 +1677,7 @@ DescribeTableSubtree("handling requests",
 )
 ```
 
-now the body function passed to the table is invoked during the Tree Construction Phase to generate a set of specs for each entry.  Each body function is invoked within the context of a new container so that setup nodes will only run for the specs defined in the body function.  As with `DescribeTable` this is simply synctactic sugar around Ginkgo's existing DSL.  The above example is identical to:
+now the body function passed to the table is invoked during the Tree Construction Phase to generate a set of specs for each entry.  Each body function is invoked within the context of a new container so that setup nodes will only run for the specs defined in the body function.  As with `DescribeTable` this is simply syntactic sugar around Ginkgo's existing DSL.  The above example is identical to:
 
 ```go
 
@@ -2591,7 +2591,7 @@ The real power, of labels, however, is around filtering.  You can filter by labe
 - The `,` binary operator equivalent to `||`.
 - The `()` for grouping expressions.
 - Regular expressions can be provided using `/REGEXP/` notation.
-- All other characters will match as label literals.  Label matches are **case insensitive** and trailing and leading whitespace is trimmed.
+- All other characters will match as label literals.  Label matches are **case-insensitive** and trailing and leading whitespace is trimmed.
 
 To build on our example above, here are some label filter queries and their behavior:
 
@@ -2830,13 +2830,13 @@ Stepping back - it bears repeating: you should use `FlakeAttempts` judiciously. 
 ### Getting Visibility Into Long-Running Specs
 Ginkgo is often used to build large, complex, integration suites and it is a common - if painful - experience for these suites to run slowly.  Ginkgo provides numerous mechanisms that enable developers to get visibility into what part of a suite is running and where, precisely, a spec may be lagging or hanging.
 
-Ginkgo can provide a **Progress Report** of what is currently running in response to the `SIGINFO` and `SIGUSR1` signals.  The Progress Report includes information about which node is currently running and the exact line of code that it is currently executing, along with any relevant goroutines that were launched by the spec.  The report also includes the 10 most recent lines written to the `GinkgoWriter`.  A developer waiting for a stuck spec can get this information immediately by sending either the `SIGINFO` or `SIGUSR1` signal (on MacOS/BSD systems, `SIGINFO` can be sent via `^T` - making it especially convenient; if you're on linux you'll need to send `SIGUSR1` to the actual test process spawned by `ginkgo` - not the `ginkgo` cli process itself).
+Ginkgo can provide a **Progress Report** of what is currently running in response to the `SIGINFO` and `SIGUSR1` signals.  The Progress Report includes information about which node is currently running and the exact line of code that it is currently executing, along with any relevant goroutines that were launched by the spec.  The report also includes the 10 most recent lines written to the `GinkgoWriter`.  A developer waiting for a stuck spec can get this information immediately by sending either the `SIGINFO` or `SIGUSR1` signal (on macOS/BSD systems, `SIGINFO` can be sent via `^T` - making it especially convenient; if you're on linux you'll need to send `SIGUSR1` to the actual test process spawned by `ginkgo` - not the `ginkgo` cli process itself).
 
 These Progress Reports can also show you a preview of the running source code, but only if Ginkgo can find your source files.  If need be you can tell Ginkgo where to look for source files by specifying `--source-root`.
 
 Finally - you can instruct Ginkgo to provide  Progress Reports automatically whenever a node takes too long to complete.  You do this by passing the `--poll-progress-after=INTERVAL` flag to specify how long Ginkgo should wait before emitting a progress report.  Once this interval is passed Ginkgo can periodically emit Progress Reports - the interval between these reports is controlled via the `--poll-progress-interval=INTERVAL` flag.  By default `--poll-progress-after` is set to `0` and so Ginkgo does not emit Progress Reports.
 
-You can override the global setting of `poll-progess-after` and `poll-progress-interval` on a per-node basis by using the `PollProgressAfter(INTERVAL)` and `PollProgressInterval(INTERVAL)` decorators.  A value of `0` will explicitly turn off Progress Reports for a given node regardless of the global setting.
+You can override the global setting of `poll-progress-after` and `poll-progress-interval` on a per-node basis by using the `PollProgressAfter(INTERVAL)` and `PollProgressInterval(INTERVAL)` decorators.  A value of `0` will explicitly turn off Progress Reports for a given node regardless of the global setting.
 
 All Progress Reports generated by Ginkgo - whether interactively via `SIGINFO/SIGUSR1` or automatically via the `PollProgressAfter` configuration - also appear in Ginkgo's [machine-readable reports](#generating-machine-readable-reports).
 
@@ -3347,7 +3347,7 @@ If you want to get information about what is currently running in a suite _witho
 
 ### Previewing Specs
 
-Ginkgo provides a few different mechansisms for previewing and analyzing the specs defined in a suite.  You can use the [`outline`](#creating-an-outline-of-specs) cli command to get a machine-readable list of specs defined in the suite.  Outline parses the Go AST tree of the suite to determine the specs and therefore does not require the suite to be compiled.  This comes with a limitation, however: outline does not offer insight into which specs will run for a given set of filters and it cannot handle dynamically generated specs (example specs generated by a `for` loop).
+Ginkgo provides a few different mechanisms for previewing and analyzing the specs defined in a suite.  You can use the [`outline`](#creating-an-outline-of-specs) cli command to get a machine-readable list of specs defined in the suite.  Outline parses the Go AST tree of the suite to determine the specs and therefore does not require the suite to be compiled.  This comes with a limitation, however: outline does not offer insight into which specs will run for a given set of filters and it cannot handle dynamically generated specs (example specs generated by a `for` loop).
 
 For a more complete preview you can run `ginkgo --dry-run -v`.  This compiles the spec, builds the spec tree, and then walks the tree printing out spec information using Ginkgo's default output as it goes.  This allows you to see which specs will run for a given set of filters and also allows you to see dynamically generated specs.  Note that you cannot use `--dry-run` with `-p` or `-procs`: you must run in series.
 
@@ -3438,7 +3438,7 @@ These settings control the amount of information emitted with each spec.  By def
 
 The two verbose settings are most helpful when debugging spec suites.  They make Ginkgo emit the detailed timeline information for _every_ spec regardless of failure or success.  When running in series with `-v` or `-vv` mode Ginkgo will stream out the timeline in real-time while specs are running. A real-time stream isn't possible when running in parallel (the [streams would be interleaved](https://www.youtube.com/watch?v=jyaLZHiJJnE)); instead Ginkgo emits all this information about each spec right after it completes.
 
-Very-verbose mode contains additional information over verbose mode.  In particular, `-vv` timelines indicate when individual nodes start and end and also include the full failure descriptions for _every_ failure encountered by the spec.  Verbose mode does not include the node start/end events (though this can be turned on with `--show-node-events`) and does not include detailed failure information for anything other than the first (primary) failure.  (Additional/subseuqent failures typically occur in clean-up nodes and are not as relevant as the primary failure that occurs in a subject or setup node).
+Very-verbose mode contains additional information over verbose mode.  In particular, `-vv` timelines indicate when individual nodes start and end and also include the full failure descriptions for _every_ failure encountered by the spec.  Verbose mode does not include the node start/end events (though this can be turned on with `--show-node-events`) and does not include detailed failure information for anything other than the first (primary) failure.  (Additional/subsequent failures typically occur in clean-up nodes and are not as relevant as the primary failure that occurs in a subject or setup node).
 
 When you [filter specs](#filtering-specs) using Ginkgo's various filtering mechanism Ginkgo usually emits a single cyan `S` for each skipped spec.  If you run with the very-verbose setting, however, Ginkgo will emit the description and location information of every skipped spec.  This can be useful if you need to debug your filter queries and can be paired with `--dry-run`.
 
@@ -3631,7 +3631,7 @@ var _ = ReportAfterSuite("interruptible ReportAfterSuite", func(ctx SpecContext,
 
 The closure passed to `ReportBeforeSuite` is called exactly once at the beginning of the suite before any `BeforeSuite` nodes or specs run have run.  The closure passed to `ReportAfterSuite` is called exactly once at the end of the suite after any `AfterSuite` nodes have run.
 
-Finally, and most importantly, when running in parallel both `ReportBeforeSuite` and `ReportAfterSuite` **only run on process #1**.  Gingko guarantess that no other processes will start running their specs until after `ReportBeforeSuite` on process #1 has completed.  Similarly, Ginkgo will only run `ReportAfterSuite` on process #1 after all other processes have finished and exited.  Ginkgo provides a single `Report` that aggregates the `SpecReports` from all processes.  This allows you to perform any custom suite reporting in one place after all specs have run and not have to worry about aggregating information across multiple parallel processes.
+Finally, and most importantly, when running in parallel both `ReportBeforeSuite` and `ReportAfterSuite` **only run on process #1**.  Gingko guarantees that no other processes will start running their specs until after `ReportBeforeSuite` on process #1 has completed.  Similarly, Ginkgo will only run `ReportAfterSuite` on process #1 after all other processes have finished and exited.  Ginkgo provides a single `Report` that aggregates the `SpecReports` from all processes.  This allows you to perform any custom suite reporting in one place after all specs have run and not have to worry about aggregating information across multiple parallel processes.
 
 Given all this, we can rewrite our invalid `ReportAfterEach` example from above into a valid `ReportAfterSuite` example:
 
@@ -3731,14 +3731,14 @@ When run with `--cover`, Ginkgo will generate a single `coverprofile.out` file t
 
 Ginkgo also honors the `--output-dir` flag when generating coverprofiles.  If you specify `--output-dir` the generated coverprofile will be placed in the requested directory.  If you also specify `--keep-separate-coverprofiles` individual package coverprofiles will be placed in the requested directory and namespaced with a prefix that contains the name of the package in question.
 
-Finally, when running a suite that has [programatically focused specs](#focused-specs) (i.e. specs with the `Focus` decorator or with nodes prefixed with an `F`) Ginkgo exits the suite early with a non-zero exit code.  This interferes with `go test`'s profiling code and prevents profiles from being generated.  Ginkgo will tell you this has happened.  If you want to profile just a subset of your suite you'll need to use a different [mechanism](#filtering-specs) to filter your specs.
+Finally, when running a suite that has [programmatically focused specs](#focused-specs) (i.e. specs with the `Focus` decorator or with nodes prefixed with an `F`) Ginkgo exits the suite early with a non-zero exit code.  This interferes with `go test`'s profiling code and prevents profiles from being generated.  Ginkgo will tell you this has happened.  If you want to profile just a subset of your suite you'll need to use a different [mechanism](#filtering-specs) to filter your specs.
 
 #### Other Profiles
 Running `ginkgo` with any of `--cpuprofile=X`, `--memprofile=X`, `--blockprofile=X`, and `--mutexprofile=X` will generate corresponding profile files for suite that runs.  Doing so will also preserve the test binary generated by Ginkgo to enable users to use `go tool pprof <BINARY> <PROFILE>` to analyze the profile.
 
 By default, the test binary and various profile files are stored in the individual directories of any suites that Ginkgo runs.  If you specify `--output-dir`, however, then these assets are moved to the requested directory and namespaced with a prefix that contains the name of the package in question.
 
-As with coverage computation, these profiles will not generate a file if a suite includes programatically focused specs (see the discussion [above](#computing-coverage)).
+As with coverage computation, these profiles will not generate a file if a suite includes programmatically focused specs (see the discussion [above](#computing-coverage)).
 
 ## Ginkgo and Gomega Patterns
 So far we've introduced and described the majority of Ginkgo's capabilities and building blocks.  Hopefully the previous chapters have helped give you a mental model for how Ginkgo specs are written and run.
@@ -3773,7 +3773,7 @@ Here's why:
 - `--timeout` allows you to specify a timeout for the `ginkgo` run.  The default duration is one hour, which may or may not be enough!
 - `--poll-progress-after` and `--poll-progress-interval` will allow you to learn where long-running specs are getting stuck.  Choose a values for `X` and `Y` that are appropriate to your suite.  A long-running integration suite, for example, might set `X` to `120s` and `Y` to `30s` - whereas a quicker set of unit tests might not need this setting.  Note that if you precompile suites and run them from a different directory relative to your source code, you may also need to set `--source-root` to enable Ginkgo to emit source code lines when generating progress reports.
 
-If running on Github actions: `--github-output` will make the output more readable in the Github actions console.
+If running on GitHub actions: `--github-output` will make the output more readable in the GitHub actions console.
 
 If your CI system will only flush if a newline character is seen you may want to set `--force-newlines` to ensure that the output is flushed correctly.
 
@@ -3938,7 +3938,7 @@ var _ = Describe(describeName, func() {
 ...
 ```
 
-Counter-intuitively, this will always yield `"Smoketests - "`.  The reason is that `fmt.Sprintf` is being called as go is traversing the top-level identifiers in the suite.  At this point, `init` functions are being _defined_ but have not yet been invoked.  So (a) we haven't actually registered our flags yet and, more importantly, (b) `go test` hasn't _parsed_ the flags yet.  Our `smokeEnv` variable is therefore empty.  There's no way around this - in general you should avoid trying to access configuration information at the top-level.  However, if you must then you will need to use use environment variables instead of flags.
+Counter-intuitively, this will always yield `"Smoketests - "`.  The reason is that `fmt.Sprintf` is being called as go is traversing the top-level identifiers in the suite.  At this point, `init` functions are being _defined_ but have not yet been invoked.  So (a) we haven't actually registered our flags yet and, more importantly, (b) `go test` hasn't _parsed_ the flags yet.  Our `smokeEnv` variable is therefore empty.  There's no way around this - in general you should avoid trying to access configuration information at the top-level.  However, if you must then you will need to use environment variables instead of flags.
 
 #### Overriding Ginkgo's command-line configuration in the suite
 
@@ -4475,7 +4475,7 @@ Describe("Change book font-size", func() {
     }()
 
     // now we wait for the `done` channel to close.  Note that we neither pass in a context nor set an explicit timeout
-    // in this case `Eventually` `will use Gomega's default global timeout (1 second, unless overriden by the user)
+    // in this case `Eventually` `will use Gomega's default global timeout (1 second, unless overridden by the user)
     Eventually(done).Should(BeClosed())
   })
 })
@@ -4692,7 +4692,7 @@ SynchronizedBeforeSuite(func() []byte {
 
 Now only process #1 will compile the publisher.  All other processes will wait until it's done.  Once complete it will pass the path to the compiled artifact to all other processes.  Note that the `DeferCleanup` in the `SynchronizedBeforeSuite` will have the same runtime semantics as a `SynchronizedAfterSuite` so `gexec` will not cleanup after itself until _all_ processes have finished running.
 
-Now any spec running on any process can simply launch it's own instance of the `publisher` process via `gexec` and make assertions on its output with `gbytes`.  The only thing to be aware of is potential interactions between the multiple publisher processes if they happen to access some sort of shared singleton resources...  Keep reading!
+Now any spec running on any process can simply launch its own instance of the `publisher` process via `gexec` and make assertions on its output with `gbytes`.  The only thing to be aware of is potential interactions between the multiple publisher processes if they happen to access some sort of shared singleton resources...  Keep reading!
 
 #### Managing External Resources in Parallel Suites: Files
 
@@ -5392,16 +5392,16 @@ which will recurse through the current file tree and run any suites it finds.
 To pass additional arguments or custom flags down to your suite use `--` to separate your arguments from arguments intended for `ginkgo`:
 
 ```bash
-ginkgo -- <PASS-THROUGHS>
+ginkgo -- <PASSTHROUGHS>
 ```
 
 Finally, note that any Ginkgo flags must appear _before_ the list of packages.  Putting it all together:
 
 ```bash
-ginkgo <GINKGO-FLAGS> <PACKAGES> -- <PASS-THROUGHS>
+ginkgo <GINKGO-FLAGS> <PACKAGES> -- <PASSTHROUGHS>
 ```
 
-By default Ginkgo is running the `run` subcommand.  So all these examples can also be written as `ginkgo run <GINKGO-FLAGS> <PACKAGES> -- <PASS-THROUGHS>`.  To get help about Ginkgo's run flags you'll need to run `ginkgo help run`.
+By default Ginkgo is running the `run` subcommand.  So all these examples can also be written as `ginkgo run <GINKGO-FLAGS> <PACKAGES> -- <PASSTHROUGHS>`.  To get help about Ginkgo's run flags you'll need to run `ginkgo help run`.
 
 ### Precompiling Suites
 
@@ -5614,6 +5614,6 @@ Set the `GINKGO_PRESERVE_CACHE` environment variable to `true` in order to
 skip the `os.Getwd()` call. This may affect the reporter output.
 
 ### The ginkgolinter
-The [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces several patterns of using ginkgo and gomega. It can run as an independent executable or as part of the [golangci-lint](https://golangci-lint.run/) linter. See the ginkgolinter [READMY](https://github.com/nunnatsa/ginkgolinter#readme) for more details.
+The [ginkgolinter](https://github.com/nunnatsa/ginkgolinter) enforces several patterns of using ginkgo and gomega. It can run as an independent executable or as part of the [golangci-lint](https://golangci-lint.run/) linter. See the ginkgolinter [README](https://github.com/nunnatsa/ginkgolinter#readme) for more details.
 
 {% endraw  %}

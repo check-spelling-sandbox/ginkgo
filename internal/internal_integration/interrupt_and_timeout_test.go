@@ -143,7 +143,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 					Ω(reporter.Did.Find("A").Failure.ProgressReport.OtherGoroutines()).ShouldNot(BeEmpty())
 				})
 
-				It("emits a condensed ProgressReport with a shorter stack trace - note that it does not say anything about a leaked goroutine becuase the grace period is not enforced", func() {
+				It("emits a condensed ProgressReport with a shorter stack trace - note that it does not say anything about a leaked goroutine because the grace period is not enforced", func() {
 					Ω(reporter.ProgressReports).Should(HaveLen(1))
 					pr := reporter.ProgressReports[0]
 					Ω(pr.Message).Should(ContainSubstring("Interrupted by User"))
@@ -348,7 +348,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 					Ω(success).Should(Equal(false))
 				}, NodeTimeout(time.Second))
 
-				It("waits for a GracePeriod then interrupts, then waits for a grace period again, then leaks and lets the user know a leak occured", func() {
+				It("waits for a GracePeriod then interrupts, then waits for a grace period again, then leaks and lets the user know a leak occurred", func() {
 					Ω(rt).Should(HaveTracked("bef-outer", "bef-inner", "A", "aft-inner", "aft-outer"))
 					Ω(reporter.Did.Find("A")).Should(HaveBeenInterrupted(interrupt_handler.InterruptCauseSignal))
 					Ω(reporter.Did.Find("B")).Should(HaveBeenSkipped())
@@ -585,7 +585,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			})
 		})
 
-		Context("when a timeout has already occured", func() {
+		Context("when a timeout has already occurred", func() {
 			BeforeEach(func() {
 				success, _ := RunFixture(CurrentSpecReport().LeafNodeText, func() {
 					It("A", func(c SpecContext) {
@@ -605,7 +605,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			})
 		})
 
-		Context("when a failure has already occured", func() {
+		Context("when a failure has already occurred", func() {
 			BeforeEach(func() {
 				success, _ := RunFixture(CurrentSpecReport().LeafNodeText, func() {
 					It("A", rt.T("A", func() {
@@ -699,7 +699,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			Ω(times.Get("C")).Should(BeNumerically("~", 150*time.Millisecond, 50*time.Millisecond))
 		})
 
-		It("attaches progress reports to the timout failures", func() {
+		It("attaches progress reports to the timeout failures", func() {
 			Ω(reporter.Did.Find("A").Failure.ProgressReport.LeafNodeText).Should(Equal("A"))
 			Ω(reporter.Did.Find("A").Failure.ProgressReport.Message).Should(Equal("{{bold}}This is the Progress Report generated when the node timeout occurred:{{/}}"))
 			Ω(reporter.Did.Find("B").Failure.ProgressReport.LeafNodeText).Should(Equal("B"))
@@ -818,7 +818,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			Ω(success).Should(Equal(false))
 		}, NodeTimeout(time.Second*5))
 
-		It("timesout the node in question and proceeds with other nodes without waiting; subsequent nodes are subject to the timeout if present, otherwise the grace period", func() {
+		It("times out the node in question and proceeds with other nodes without waiting; subsequent nodes are subject to the timeout if present, otherwise the grace period", func() {
 			Ω(rt).Should(HaveTracked("bef", "A", "aft-1", "aft-2", "aft-3", "aft-4", "aft-5"))
 
 			dt := 50 * time.Millisecond

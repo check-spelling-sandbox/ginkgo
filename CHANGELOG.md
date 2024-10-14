@@ -39,7 +39,7 @@ Require Go 1.22+
 ## 2.18.0
 
 ### Features
-- Add --slience-skips and --force-newlines [f010b65]
+- Add --silence-skips and --force-newlines [f010b65]
 - fail when no tests were run and --fail-on-empty was set [d80eebe]
 
 ### Fixes
@@ -133,7 +133,7 @@ Require Go 1.22+
 ### Features
 You can now use `GinkgoTB()` when you need an instance of `testing.TB` to pass to a library.
 
-Prior to this release table testing only supported generating individual `It`s for each test entry.  `DescribeTableSubtree` extends table testing support to entire testing subtrees - under the hood `DescrieTableSubtree` generates a new container for each entry and invokes your function to fill our the container.  See the [docs](https://onsi.github.io/ginkgo/#generating-subtree-tables) to learn more.
+Prior to this release table testing only supported generating individual `It`s for each test entry.  `DescribeTableSubtree` extends table testing support to entire testing subtrees - under the hood `DescribeTableSubtree` generates a new container for each entry and invokes your function to fill our the container.  See the [docs](https://onsi.github.io/ginkgo/#generating-subtree-tables) to learn more.
 
 - Introduce DescribeTableSubtree [65ec56d]
 - add GinkgoTB() to docs [4a2c832]
@@ -162,7 +162,7 @@ Prior to this release table testing only supported generating individual `It`s f
 ## 2.13.1
 
 ### Fixes
-- # 1296 fix(precompiled test guite): exec bit check omitted on Windows (#1301) [26eea01]
+- # 1296 fix(precompiled test suite): exec bit check omitted on Windows (#1301) [26eea01]
 
 ### Maintenance
 - Bump github.com/go-logr/logr from 1.2.4 to 1.3.0 (#1291) [7161a9d]
@@ -212,7 +212,7 @@ Going forward Ginkgo will AND all programmatic and CLI filters.  Moreover, the p
 This change is technically a change in Ginkgo's external contract and may require some users to make changes to successfully adopt. Specifically: it's possible some users were intentionally using CLI filters to override programmatic focus.  If this is you please open an issue so we can explore solutions to the underlying problem you are trying to solve.
 
 ### Fixes
-- Programmatic focus is no longer overwrriten by CLI filters [d6bba86]
+- Programmatic focus is no longer overridden by CLI filters [d6bba86]
 
 ### Maintenance
 - Bump github.com/onsi/gomega from 1.27.7 to 1.27.8 (#1218) [4a70a38]
@@ -542,9 +542,9 @@ Ginkgo now supports per-node and per-spec timeouts on interruptible nodes.  Chec
 It("is interruptible", func(ctx SpecContext) { // or context.Context instead of SpecContext, both are valid.
     // do things until `ctx.Done()` is closed, for example:
     req, err := http.NewRequestWithContext(ctx, "POST", "/build-widgets", nil)
-    Expect(err).NotTo(HaveOccured())
+    Expect(err).NotTo(HaveOccurred())
     _, err := http.DefaultClient.Do(req)
-    Expect(err).NotTo(HaveOccured())
+    Expect(err).NotTo(HaveOccurred())
 
     Eventually(client.WidgetCount).WithContext(ctx).Should(Equal(17))
 }, NodeTimeout(time.Second*20), GracePeriod(5*time.Second))
@@ -574,11 +574,11 @@ and have Ginkgo ensure that the node completes before the timeout elapses.  If i
 
 Ginkgo can now generate Progress Reports to point users at the current running line of code (including a preview of the actual source code) and a best guess at the most relevant subroutines.
 
-These Progress Reports allow users to debug stuck or slow tests without exiting the Ginkgo process.  A Progress Report can be generated at any time by sending Ginkgo a `SIGINFO` (`^T` on MacOS/BSD) or `SIGUSR1`.
+These Progress Reports allow users to debug stuck or slow tests without exiting the Ginkgo process.  A Progress Report can be generated at any time by sending Ginkgo a `SIGINFO` (`^T` on macOS/BSD) or `SIGUSR1`.
 
-In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overriden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
+In addition, the user can specify `--poll-progress-after` and `--poll-progress-interval` to have Ginkgo start periodically emitting progress reports if a given node takes too long.  These can be overridden/set on a per-node basis with the `PollProgressAfter` and `PollProgressInterval` decorators.
 
-Progress Reports are emitted to stdout, and also stored in the machine-redable report formats that Ginkgo supports.
+Progress Reports are emitted to stdout, and also stored in the machine-readable report formats that Ginkgo supports.
 
 Ginkgo also uses this progress reporting infrastructure under the hood when handling timeouts and interrupts.  This yields much more focused, useful, and informative stack traces than previously.
 
@@ -589,7 +589,7 @@ Ginkgo also uses this progress reporting infrastructure under the hood when hand
 
 ### Maintenance
 - Modernize the invocation of Ginkgo in github actions [0ffde58]
-- Update reocmmended CI settings in docs [896bbb9]
+- Update recommended CI settings in docs [896bbb9]
 - Speed up unnecessarily slow integration test [6d3a90e]
 
 ## 2.1.6
@@ -893,7 +893,7 @@ You can silence the RC advertisement by setting an `ACK_GINKGO_RC=true` environm
 - Increase the threshold when checking time measurements (#455) [2f714bf, 68f622c]
 - Fix race condition in coverage tests (#423) [a5a8ff7, ab9c08b]
 - Add an extra new line after reporting spec run completion for test2json [874520d]
-- added name name field to junit reported testsuite [ae61c63]
+- added `name` field to junit reported testsuite [ae61c63]
 - Do not set the run time of a spec when the dryRun flag is used (#438) [457e2d9, ba8e856]
 - Process FWhen and FSpecify when unfocusing (#434) [9008c7b, ee65bd, df87dfe]
 - Synchronies the access to the state of specs to avoid race conditions (#430) [7d481bc, ae6829d]
@@ -982,7 +982,7 @@ Bug Fixes:
 - Fixed an issue where a pending test within a focused context (or a focused test within a pending context) would skip all other tests.
 - Be more consistent about handling SIGTERM as well as SIGINT
 - When interrupted while concurrently compiling test suites in the background, Ginkgo now cleans up the compiled artifacts.
-- Fixed a long standing bug where `ginkgo -p` would hang if a process spawned by one of the Ginkgo parallel nodes does not exit. (Hooray!)
+- Fixed a long-standing bug where `ginkgo -p` would hang if a process spawned by one of the Ginkgo parallel nodes does not exit. (Hooray!)
 
 ## 1.1.0 (8/2/2014)
 
@@ -1008,7 +1008,7 @@ Improvements:
 
 Bug Fixes:
 
-- `ginkgo boostrap` and `ginkgo generate` no longer fail when dealing with `hyphen-separated-packages`.
+- `ginkgo bootstrap` and `ginkgo generate` no longer fail when dealing with `hyphen-separated-packages`.
 - parallel specs are now better distributed across nodes - fixed a crashing bug where (for example) distributing 11 tests across 7 nodes would panic
 
 ## 1.0.0 (5/24/2014)

@@ -26,7 +26,7 @@ func (impl *dupSyscallOutputInterceptorImpl) CreateStdoutStderrClones() (*os.Fil
 	stdoutCloneFD, _ := unix.Dup(1)
 	stderrCloneFD, _ := unix.Dup(2)
 
-	// Important, set the fds to FD_CLOEXEC to prevent them leaking into childs
+	// Important, set the fds to FD_CLOEXEC to prevent them leaking into children
 	// https://github.com/onsi/ginkgo/issues/1191
 	flags, err := unix.FcntlInt(uintptr(stdoutCloneFD), unix.F_GETFD, 0)
 	if err == nil {

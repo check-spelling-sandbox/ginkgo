@@ -20,7 +20,7 @@ var _ = Describe("Emitting progress", func() {
 			fm.MountFixture("progress_report")
 		})
 
-		It("emits progress when a singal is sent and when tests take too long", func() {
+		It("emits progress when a signal is sent and when tests take too long", func() {
 			session := startGinkgo(fm.PathTo("progress_report"), "--poll-progress-after=1500ms", "--poll-progress-interval=200ms", "--no-color")
 			Eventually(session).Should(gbytes.Say(`READY `))
 			buf := make([]byte, 128)
@@ -79,7 +79,7 @@ var _ = Describe("Emitting progress", func() {
 			Ω(session).ShouldNot(gbytes.Say(`>\s*time.Sleep\(1 \* time\.Second\)`))
 
 			// now we run, but configured with source-root and see that we have the file
-			// note that multipel source-roots can be passed in
+			// note that multiple source-roots can be passed in
 			session = startGinkgo(fm.PathTo("progress_report", "suite"), "--poll-progress-after=1500ms", "--poll-progress-interval=200ms", "--no-color", "-label-filter=one-second", "--source-root=/tmp", "--source-root="+path, "./progress_report.test")
 			Eventually(session).Should(gbytes.Say(`>\s*time\.Sleep\(1 \* time\.Second\)`))
 			Eventually(session).Should(gexec.Exit(0))

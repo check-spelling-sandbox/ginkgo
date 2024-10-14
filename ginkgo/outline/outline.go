@@ -96,7 +96,7 @@ func (o *outline) StringIndent(width int) string {
 		} else {
 			labels = strings.Join(n.Labels, ", ")
 		}
-		//enclosing labels in a double quoted comma separate listed so that when inmported into a CSV app the Labels column has comma separate strings
+		//enclosing labels in a double quoted comma separate listed so that when imported into a CSV app the Labels column has comma separate strings
 		b.WriteString(fmt.Sprintf("%s,%s,%d,%d,%t,%t,%t,\"%s\"\n", n.Name, n.Text, n.Start, n.End, n.Spec, n.Focused, n.Pending, labels))
 		currentIndent += width
 	}

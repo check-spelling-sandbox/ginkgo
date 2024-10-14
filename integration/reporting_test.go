@@ -20,7 +20,7 @@ var _ = Describe("Reporting", func() {
 	})
 
 	Describe("in-suite reporting with ReportBeforeEach, ReportAfterEach, ReportBeforeSuite and ReportAfterSuite", func() {
-		It("preview thes uite via ReportBeforeSuite", func() {
+		It("preview the suite via ReportBeforeSuite", func() {
 			session := startGinkgo(fm.PathTo("reporting"), "--no-color", "--seed=17", "--procs=2")
 			Eventually(session).Should(gexec.Exit(1))
 
@@ -176,7 +176,7 @@ var _ = Describe("Reporting", func() {
 			Ω(specReports.FindByLeafNodeType(types.NodeTypeBeforeSuite)).Should(HavePassed())
 			Ω(specReports.FindByLeafNodeType(types.NodeTypeCleanupAfterSuite)).Should(HavePassed())
 
-			//check that progress reporst are correctly embedded
+			//check that progress reports are correctly embedded
 			Ω(specReports.Find("passes").ProgressReports).Should(BeEmpty())
 			Ω(specReports.Find("has a progress report").ProgressReports).ShouldNot(BeEmpty())
 			var highlightedFunction types.FunctionCall
