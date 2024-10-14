@@ -168,7 +168,7 @@ var _ = Describe("Trees (TreeNode and TreeNodes)", func() {
 			})
 
 			It("ensures each node as the correct nesting level", func() {
-				extpectedNestingLevels := [][]int{
+				expectedNestingLevels := [][]int{
 					{0, 0, 0},
 					{0, 0, 1, 1, 1, 0},
 					{0, 0, 1, 1, 2, 2, 2, 1, 0},
@@ -176,7 +176,7 @@ var _ = Describe("Trees (TreeNode and TreeNodes)", func() {
 					{0, 0, 1, 1, 1, 0},
 					{0, 0, 0},
 				}
-				for i, expectedNestingLevels := range extpectedNestingLevels {
+				for i, expectedNestingLevels := range expectedNestingLevels {
 					for j, expectedNestingLevel := range expectedNestingLevels {
 						Ω(tests[i].Nodes[j].NestingLevel).Should(Equal(expectedNestingLevel))
 					}
