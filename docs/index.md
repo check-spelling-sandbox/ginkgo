@@ -1677,7 +1677,7 @@ DescribeTableSubtree("handling requests",
 )
 ```
 
-now the body function passed to the table is invoked during the Tree Construction Phase to generate a set of specs for each entry.  Each body function is invoked within the context of a new container so that setup nodes will only run for the specs defined in the body function.  As with `DescribeTable` this is simply synctactic sugar around Ginkgo's existing DSL.  The above example is identical to:
+now the body function passed to the table is invoked during the Tree Construction Phase to generate a set of specs for each entry.  Each body function is invoked within the context of a new container so that setup nodes will only run for the specs defined in the body function.  As with `DescribeTable` this is simply syntactic sugar around Ginkgo's existing DSL.  The above example is identical to:
 
 ```go
 
