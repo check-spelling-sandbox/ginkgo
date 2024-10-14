@@ -699,7 +699,7 @@ var _ = Describe("Interrupts and Timeouts", func() {
 			Ω(times.Get("C")).Should(BeNumerically("~", 150*time.Millisecond, 50*time.Millisecond))
 		})
 
-		It("attaches progress reports to the timout failures", func() {
+		It("attaches progress reports to the timeout failures", func() {
 			Ω(reporter.Did.Find("A").Failure.ProgressReport.LeafNodeText).Should(Equal("A"))
 			Ω(reporter.Did.Find("A").Failure.ProgressReport.Message).Should(Equal("{{bold}}This is the Progress Report generated when the node timeout occurred:{{/}}"))
 			Ω(reporter.Did.Find("B").Failure.ProgressReport.LeafNodeText).Should(Equal("B"))
