@@ -1569,7 +1569,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Timeline{{/}}",
 				DELIMITER,
 				""),
-			Case(Verbose, // don't see the other timeline entries because they are emitted in realthime (which isn't shown here since we don't replay the timeline in the spec)
+			Case(Verbose, // don't see the other timeline entries because they are emitted in realtime (which isn't shown here since we don't replay the timeline in the spec)
 				DELIMITER,
 				"{{/}}A {{gray}}B {{/}}{{bold}}[It] C{{/}}",
 				"{{gray}}cl2.go:80{{/}}",
@@ -1803,7 +1803,7 @@ var _ = Describe("DefaultReporter", func() {
 				"  {{gray}}<< Timeline{{/}}",
 				DELIMITER,
 				""),
-			Case(Verbose, // don't see the other timeline entries because they are emitted in realthime (which isn't shown here since we don't replay the timeline in the spec)
+			Case(Verbose, // don't see the other timeline entries because they are emitted in realtime (which isn't shown here since we don't replay the timeline in the spec)
 				DELIMITER,
 				"{{/}}A {{gray}}B {{/}}{{bold}}[It] C{{/}} {{coral}}[dolphin, gorilla, cow, cat, dog]{{/}}",
 				"{{gray}}cl2.go:80{{/}}",
